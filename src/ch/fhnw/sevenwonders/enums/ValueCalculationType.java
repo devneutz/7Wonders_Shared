@@ -1,5 +1,5 @@
 package ch.fhnw.sevenwonders.enums;
 
-public enum ValueCalcalationType {
+public enum ValueCalculationType {
 	And, Or
 }
