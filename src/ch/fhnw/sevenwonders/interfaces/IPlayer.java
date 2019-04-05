@@ -22,20 +22,20 @@ public interface IPlayer {
 	// Methode zur Überprüfung ob das definierte Passwort gültig ist
 	Boolean isPasswordValid();
 	
-	// ??Joel fragen was damit gemeint ist ?? Wieso als Rückgabe boolean und nicht das Objekt Card ?
+	// Methode zur Überprüfung ob Karte gespielt wurde
 	Boolean getCardPlayed();
 	
-	// ??Joel fragen was damit gemeint ist ?? Wieso als Eingabe boolean und nicht das Objekt Card ?
+	// Methode zur Festlegung das Karte gespielt wurde
 	void setCardPlayed(Boolean cardPlayed);
 	
 	// Methode zum Hinzufügen des Spielers in die mitgegebene Lobby
-	void joinLobby(String lobby); //-> ILobby muss noch erstellt werden, danach umbenenen !
+	void joinLobby(ILobby lobby);
 	
 	// Methode zur Erstellung der Lobby
 	void creatLobby(String lobbyName);
 	
 	// Methode zur Löschung der mitgegebenen Lobby
-	void deleteLobby (String lobby); //-> ILobby muss noch erstellt werden, danach umbenenen !
+	void deleteLobby (ILobby lobby);
 	
 	// Methode zum Aussteigen aus einer Lobby
 	void leaveLobby(String lobbyName);
