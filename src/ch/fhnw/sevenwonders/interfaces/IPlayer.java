@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public interface IPlayer {	
 	
+	// Ist der Benutzer authentifiziert? Sprich nach erfolgreichem Login der Fall
+	boolean getIsAuthenticated();
+	
 	// Methode zur Festlegung des Password Hash
 	void setPasswordHash(String pwHash);
 	

@@ -2,10 +2,11 @@ package ch.fhnw.sevenwonders.messages;
 
 import java.io.Serializable;
 
+import ch.fhnw.sevenwonders.interfaces.IPlayer;
+
 public abstract class Message implements Serializable{
-	public String message;
+	public IPlayer player;
 	
-	public Message(String inMessage) {
-		this.message = inMessage;
-	}
+	public abstract void setPlayer(IPlayer inPlayer);
+	
 }
