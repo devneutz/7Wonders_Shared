@@ -32,7 +32,7 @@ public interface IPlayer {
 	void joinLobby(ILobby lobby);
 	
 	// Methode zur Erstellung der Lobby
-	void creatLobby(String lobbyName);
+	void createLobby(String lobbyName);
 	
 	// Methode zur Löschung der mitgegebenen Lobby
 	void deleteLobby (ILobby lobby);
