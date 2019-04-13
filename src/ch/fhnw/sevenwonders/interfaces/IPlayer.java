@@ -23,10 +23,10 @@ public interface IPlayer {
 	IBoard getBoard();
 	
 	// Methode zur Überprüfung ob das definierte Passwort gültig ist
-	Boolean isPasswordValid();
+	boolean isPasswordValid();
 	
 	// Methode zur Überprüfung ob Karte gespielt wurde
-	Boolean getCardPlayed();
+	boolean getCardPlayed();
 	
 	// Methode zur Festlegung das Karte gespielt wurde
 	void setCardPlayed(Boolean cardPlayed);
