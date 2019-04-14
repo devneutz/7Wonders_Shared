@@ -1,5 +1,5 @@
 package ch.fhnw.sevenwonders.enums;
 
 public enum CardType {
-	RawMaterials, ManufacturedGoods, CivilianStructures, ScientificStractures, CommercialStructures, MilitaryStructures, Guilds
+	RawMaterials, ManufacturedGoods, CivilianStructures, ScientificStructures, CommercialStructures, MilitaryStructures, Guilds
 }
