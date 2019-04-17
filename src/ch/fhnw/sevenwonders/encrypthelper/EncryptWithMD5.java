@@ -5,6 +5,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author https://stackoverflow.com/questions/10696432/encryption-of-password-in-java-or-mysql
+ *
+ */
+
 public class EncryptWithMD5 {
 	
 	private static MessageDigest md;
