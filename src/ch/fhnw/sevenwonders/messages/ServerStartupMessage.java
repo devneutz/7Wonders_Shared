@@ -25,6 +25,10 @@ public class ServerStartupMessage extends Message {
 		this.lobbies = inLobbies;
 	}
 	
+	public void setStatusCode(StatusCode inStatusCode) {
+		this.statusCode = inStatusCode;
+	}
+	
 	public StartupAction getActionType() {
 		return this.action;
 	}

@@ -1,14 +1,19 @@
 package ch.fhnw.sevenwonders.interfaces;
 import ch.fhnw.sevenwonders.enums.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public interface IPlayer {	
+public interface IPlayer extends Serializable {	
 	
 	// Ist der Benutzer authentifiziert? Sprich nach erfolgreichem Login der Fall
 	boolean getIsAuthenticated();
 	
 	// Methode zur Festlegung des Password Hash
 	void setPasswordHash(String pwHash);
+	
+	// gibt das gehashte Passwort zurück
+	String getPassword();
 	
 	// Methode zur Festlegung des Spielernamen
 	void setName(String name);
@@ -21,9 +26,6 @@ public interface IPlayer {
 	
 	// Methode zum Auslesen welches Board der Spieler nutzt
 	IBoard getBoard();
-	
-	// Methode zur Überprüfung ob das definierte Passwort gültig ist
-	boolean isPasswordValid();
 	
 	// Methode zur Überprüfung ob Karte gespielt wurde
 	boolean getCardPlayed();
