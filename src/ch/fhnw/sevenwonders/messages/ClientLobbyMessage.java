@@ -10,7 +10,6 @@ public class ClientLobbyMessage extends Message {
 	
 	private IPlayer player;
 	private LobbyAction action;
-	// private String PlayerName; = ist das nicht gleich Iplayer?
 	private ILobby lobby;
 	
 	public ClientLobbyMessage(LobbyAction inAction) {
@@ -31,24 +30,10 @@ public class ClientLobbyMessage extends Message {
 		return this.lobby;
 	}
 	
-	public void startLobby() {
-		// @Joe ist dieses Cast korrekt?
-		List<IPlayer> list = (List<IPlayer>) this.player;
-		this.lobby.startLobby(list);
-	}
 	
-	public void createLobby(String name) {
-		name = this.player.getName();
-		this.action = LobbyAction.CreateLobby;
-		
-	}
-	
-	public void deleteLobby() {
-		this.action = LobbyAction.DeleteLobby;
-	}
-	
-	public void setAmountPlayers(int amount) {
-		// @Joe what to do?
+
+	public IPlayer getPlayer() {
+		return player;
 	}
 
 	public String getPlayerName() {
@@ -59,14 +44,6 @@ public class ClientLobbyMessage extends Message {
 		this.player.setName(name);
 	}
 
-	/*public String getPlayerName() {
-		return this.PlayerName;
-	}
 
-	public void setPlayerName(String playerName) {
-		this.PlayerName = playerName;
-	}
-	*/
-		
 	
 }

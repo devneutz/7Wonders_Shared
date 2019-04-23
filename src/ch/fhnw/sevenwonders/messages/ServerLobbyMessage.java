@@ -12,7 +12,6 @@ public class ServerLobbyMessage extends Message {
 	private IPlayer player;
 	private LobbyAction action;
 	private StatusCode statusCode;
-	private ILobby lobby;
 	
 	
 	public ServerLobbyMessage(LobbyAction inAction) {
@@ -44,16 +43,6 @@ public class ServerLobbyMessage extends Message {
 
 	public void setStatusCode(StatusCode statusCode) {
 		this.statusCode = statusCode;
-	}
-
-
-	public ILobby getLobby() {
-		return lobby;
-	}
-
-
-	public void setLobby(ILobby lobby) {
-		this.lobby = lobby;
 	}
 
 

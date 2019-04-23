@@ -14,8 +14,7 @@ public class ServerGameMessage extends Message {
 	private StatusCode statusCode;
 	private ArrayList<IPlayer> lobbyPlayers;
 	private ArrayList<ICard> cards;
-	private int WarPoints;
-	
+
 	public ServerGameMessage(GameAction inAction) {
 		this.action = inAction;
 	}
@@ -48,14 +47,6 @@ public class ServerGameMessage extends Message {
 
 	public void setCards(ArrayList<ICard> cards) {
 		this.cards = cards;
-	}
-
-	public int getWarPoints() {
-		return WarPoints;
-	}
-
-	public void setWarPoints(int warPoints) {
-		WarPoints = warPoints;
 	}
 
 	public IPlayer getPlayer() {

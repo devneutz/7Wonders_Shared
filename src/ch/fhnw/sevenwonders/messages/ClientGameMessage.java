@@ -8,7 +8,7 @@ public class ClientGameMessage extends Message {
 
 	private IPlayer player;
 	private GameAction action;
-	//@Joe was zun ? mit private CardID cardID;
+	private ICard card;
 	
 	public ClientGameMessage(GameAction inAction) {
 		this.action = inAction;
@@ -20,9 +20,18 @@ public class ClientGameMessage extends Message {
 		// TODO Auto-generated method stub
 		
 	}
+			
 	
-		
-	
+	public ICard getCard() {
+		return card;
+	}
+
+
+	public void setCard(ICard card) {
+		this.card = card;
+	}
+
+
 	public GameAction getAction() {
 		return action;
 	}
@@ -30,6 +39,11 @@ public class ClientGameMessage extends Message {
 
 	public void setAction(GameAction action) {
 		this.action = action;
+	}
+	
+	
+	public IPlayer getPlayer() {
+		return player;
 	}
 
 
