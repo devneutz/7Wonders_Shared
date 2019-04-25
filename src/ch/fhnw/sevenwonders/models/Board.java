@@ -13,22 +13,34 @@ import ch.fhnw.sevenwonders.interfaces.IBoard;
 
 public class Board implements IBoard {
 	
+	private String name;
+	private ArrayList<ResourceType> boardResource;
 	private ArrayList<ResourceType> stepOneValue;
 	private ArrayList<ResourceType> stepOneCost;
 	private ArrayList<ResourceType> stepTwoValue;
 	private ArrayList<ResourceType> stepTwoCost;
+	private ArrayList<ResourceType> stepThreeValue;
+	private ArrayList<ResourceType> stepThreeCost;
 	private String imageName;
 	
-	public Board (String imageName,
+	public Board (String name,
+			ArrayList<ResourceType> boardResource,
 			ArrayList<ResourceType> stepOneValue,
 			ArrayList<ResourceType> stepOneCost,
 			ArrayList<ResourceType> stepTwoValue,
-			ArrayList<ResourceType> stepTwoCost) {
-		this.imageName = imageName;
+			ArrayList<ResourceType> stepTwoCost,
+			ArrayList<ResourceType> stepThreeValue,
+			ArrayList<ResourceType> stepThreeCost,
+			String imageName) {
+		this.name = name;
+		this.boardResource = boardResource;
 		this.stepOneValue = stepOneValue;
 		this.stepOneCost = stepOneCost;
 		this.stepTwoValue = stepTwoValue;
-		this.stepTwoCost = stepTwoCost;		
+		this.stepTwoCost = stepTwoCost;
+		this.stepTwoValue = stepThreeValue;
+		this.stepTwoCost = stepThreeCost;
+		this.imageName = imageName;
 	}
 	@Override
 	public Boolean canBuild(int inStep, ArrayList<ResourceType> inResources) {
@@ -82,6 +94,10 @@ public class Board implements IBoard {
 	@Override
 	public ArrayList<ResourceType> getStepTwoValue() {
 		return stepTwoValue;
+	}
+	
+	public ArrayList<ResourceType> getStepThreeValue() {
+		return stepThreeValue;
 	}
 
 }
