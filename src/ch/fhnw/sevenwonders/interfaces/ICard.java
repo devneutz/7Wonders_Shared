@@ -1,5 +1,6 @@
 package ch.fhnw.sevenwonders.interfaces;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ch.fhnw.sevenwonders.enums.Age;
@@ -7,7 +8,7 @@ import ch.fhnw.sevenwonders.enums.CardType;
 import ch.fhnw.sevenwonders.enums.ResourceType;
 import ch.fhnw.sevenwonders.enums.ValueCalculationType;
 
-public interface ICard {
+public interface ICard extends Serializable {
 	
 	// Gibt das Zeitalter aus dem Enum "Age" zurück.
 	Age getAge();
