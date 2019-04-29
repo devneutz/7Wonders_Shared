@@ -18,8 +18,7 @@ public class ClientLobbyMessage extends Message {
 
 	@Override
 	public void setPlayer(IPlayer inPlayer) {
-		// TODO Auto-generated method stub
-		
+		this.player = inPlayer;		
 	}
 	
 	public LobbyAction getActionType() {
@@ -28,9 +27,7 @@ public class ClientLobbyMessage extends Message {
 	
 	public ILobby getLobby() {
 		return this.lobby;
-	}
-	
-	
+	}	
 
 	public IPlayer getPlayer() {
 		return player;
@@ -42,6 +39,10 @@ public class ClientLobbyMessage extends Message {
 	
 	public void setPlayerName(String name) {
 		this.player.setName(name);
+	}
+	
+	public void setLobby(ILobby lobby) {
+		this.lobby = lobby;
 	}
 
 
