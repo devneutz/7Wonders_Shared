@@ -22,6 +22,9 @@ public class Board implements IBoard {
 	private ArrayList<ResourceType> stepThreeValue;
 	private ArrayList<ResourceType> stepThreeCost;
 	private String imageName;
+	private boolean StepOneBuilt;
+	private boolean StepTwoBuilt;
+	private boolean StepThreeBuilt;
 	
 	public Board (String name,
 			ArrayList<ResourceType> boardResource,
@@ -98,6 +101,21 @@ public class Board implements IBoard {
 	
 	public ArrayList<ResourceType> getStepThreeValue() {
 		return stepThreeValue;
+	}
+	
+	public int getNextStageToBuild() {
+		if(!this.StepOneBuilt) {
+			return 1;
+		}
+		
+		if(!this.StepTwoBuilt) {
+			return 2;
+		}
+		
+		if(!this.StepThreeBuilt) {
+			return 3;
+		}
+		return 0;
 	}
 
 }
