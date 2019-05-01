@@ -2,10 +2,8 @@ package ch.fhnw.sevenwonders.messages;
 
 import java.util.ArrayList;
 
-import ch.fhnw.sevenwonders.enums.LobbyAction;
-import ch.fhnw.sevenwonders.enums.StatusCode;
-import ch.fhnw.sevenwonders.interfaces.ILobby;
-import ch.fhnw.sevenwonders.interfaces.IPlayer;
+import ch.fhnw.sevenwonders.enums.*;
+import ch.fhnw.sevenwonders.interfaces.*;
 
 public class ServerLobbyMessage extends Message {
 	
@@ -16,39 +14,30 @@ public class ServerLobbyMessage extends Message {
 	
 	public ServerLobbyMessage(LobbyAction inAction) {
 		this.action = inAction;
-	}
-	
+	}	
 	
 	@Override
 	public void setPlayer(IPlayer inPlayer) {
-		// TODO Auto-generated method stub
-		
+		this.player = inPlayer;		
 	}
-
 
 	public LobbyAction getAction() {
 		return action;
 	}
 
-
 	public void setAction(LobbyAction action) {
 		this.action = action;
 	}
-
 
 	public StatusCode getStatusCode() {
 		return statusCode;
 	}
 
-
 	public void setStatusCode(StatusCode statusCode) {
 		this.statusCode = statusCode;
 	}
 
-
 	public IPlayer getPlayer() {
 		return player;
-	}
-
-	
+	}	
 }
