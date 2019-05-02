@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="ch.fhnw.sevenwonders.interfaces.ICard" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/interfaces/ICard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="69" width="302" x="18" y="188"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="ch.fhnw.sevenwonders.models.Card" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/models/Card.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="430" width="527" x="-85" y="289"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ch.fhnw.sevenwonders.models.Board" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/models/Board.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="520" width="527" x="-84" y="778"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="ch.fhnw.sevenwonders.interfaces.IBoard" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/interfaces/IBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="71" width="303" x="30" y="1354"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <enumeration id="5" language="java" name="ch.fhnw.sevenwonders.enums.Age" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/enums/Age.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-237" y="186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="6" language="java" name="ch.fhnw.sevenwonders.enums.CardType" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/enums/CardType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-233" y="423"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="7" language="java" name="ch.fhnw.sevenwonders.enums.ResourceType" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/enums/ResourceType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-236" y="915"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="8" language="java" name="ch.fhnw.sevenwonders.enums.ValueCalculationType" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/enums/ValueCalculationType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-228" y="646"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <interface id="9" language="java" name="ch.fhnw.sevenwonders.interfaces.IPlayer" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/interfaces/IPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="259" x="619" y="405"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="ch.fhnw.sevenwonders.models.Player" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/models/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="752" y="780"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ch.fhnw.sevenwonders.model.Game" project="7Wonders_Server" 
+    file="/7Wonders_Server/src/ch/fhnw/sevenwonders/model/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1234" y="754"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="12" language="java" name="ch.fhnw.sevenwonders.interfaces.ILobby" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/interfaces/ILobby.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="68" width="198" x="1136" y="496"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="13" language="java" name="ch.fhnw.sevenwonders.models.Lobby" project="7Wonders_Shared" 
+    file="/7Wonders_Shared/src/ch/fhnw/sevenwonders/models/Lobby.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1236" y="323"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <bendpoint x="425" y="1384"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="15" name="board">        
+        <position height="20" width="40" x="-111" y="1333"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="18" width="27" x="-169" y="1332"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="17">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <realization id="18">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="19">    
+    <bendpoint x="442" y="222"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="20" name="cards">        
+        <position height="20" width="40" x="-178" y="1353"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-141" y="1337"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <bendpoint x="977" y="358"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="23" name="listOfAllCards">        
+        <position height="20" width="87" x="-171" y="1369"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-146" y="1336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="26" name="lobbyPlayers">        
+        <position height="20" width="83" x="-161" y="1338"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-139" y="1335"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="29" name="valueCalculationType">        
+        <position height="20" width="128" x="-218" y="1326"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="18" width="27" x="-102" y="1336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="32" name="age">        
+        <position height="20" width="29" x="-130" y="1334"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="18" width="27" x="-212" y="1374"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="34">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="35">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="36" name="stepThreeCost">        
+        <position height="20" width="92" x="-205" y="1343"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-180" y="1365"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="39" name="lobbies">        
+        <position height="20" width="49" x="-169" y="1339"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-143" y="1358"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="42" name="cardType">        
+        <position height="20" width="60" x="-162" y="1344"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="18" width="27" x="-140" y="1333"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="45" name="value">        
+        <position height="20" width="37" x="-199" y="1352"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-155" y="1347"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="47">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="48">    
+    <bendpoint x="872" y="1280"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="49" name="listOfAllBoards">        
+        <position height="20" width="94" x="-176" y="1335"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="-175" y="1358"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
