@@ -7,8 +7,14 @@ import ch.fhnw.sevenwonders.interfaces.*;
 
 public class ServerLobbyMessage extends Message {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4046922165597357235L;
+	
 	private IPlayer player;
 	private LobbyAction action;
+	private ILobby lobby;
 	private StatusCode statusCode;
 	
 	
@@ -40,4 +46,11 @@ public class ServerLobbyMessage extends Message {
 	public IPlayer getPlayer() {
 		return player;
 	}	
+	
+	public ILobby getLobby() {
+		return this.lobby;
+	}
+	public void setLobby(ILobby inLobby) {
+		this.lobby = inLobby;
+	}
 }

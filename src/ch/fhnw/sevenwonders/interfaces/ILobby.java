@@ -10,6 +10,8 @@ public interface ILobby extends Serializable {
 		
 		void setLobbyName (String name);
 		
+		String getLobbyName();
+		
 		void setNumPlayers(int numPlayers);
 		
 		IPlayer getLobbyMaster();
