@@ -11,6 +11,7 @@ public class Player implements IPlayer {
 	private transient final Logger logger = Logger.getLogger("");
 	private String passwordHash;
 	private String nickname;
+	private ILobby lobby;
 	
 	static final long serialVersionUID = 12L;
 	
@@ -59,30 +60,6 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public void joinLobby(ILobby lobby) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createLobby(String lobbyName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteLobby(ILobby lobby) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void leaveLobby(String lobbyName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int compareTo(IPlayer player) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -92,6 +69,16 @@ public class Player implements IPlayer {
 	public boolean getIsAuthenticated() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public ILobby getLobby() {
+		return this.lobby;
+	}
+
+	@Override
+	public void setLobby(ILobby inLobby) {
+		this.lobby = inLobby;		
 	}
 
 }

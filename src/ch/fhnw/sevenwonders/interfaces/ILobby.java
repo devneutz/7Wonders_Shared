@@ -11,4 +11,8 @@ public interface ILobby extends Serializable {
 		void setLobbyName (String name);
 		
 		void setNumPlayers(int numPlayers);
+		
+		IPlayer getLobbyMaster();
+		
+		void setLobbyMaster(IPlayer inPlayer);
 }

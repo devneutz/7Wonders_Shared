@@ -30,21 +30,13 @@ public interface IPlayer extends Serializable {
 	// Methode zur Überprüfung ob Karte gespielt wurde
 	boolean getCardPlayed();
 	
+	ILobby getLobby();
+	
+	void setLobby(ILobby inLobby);
+	
 	// Methode zur Festlegung das Karte gespielt wurde
 	void setCardPlayed(Boolean cardPlayed);
-	
-	// Methode zum Hinzufügen des Spielers in die mitgegebene Lobby
-	void joinLobby(ILobby lobby);
-	
-	// Methode zur Erstellung der Lobby
-	void createLobby(String lobbyName);
-	
-	// Methode zur Löschung der mitgegebenen Lobby
-	void deleteLobby (ILobby lobby);
-	
-	// Methode zum Aussteigen aus einer Lobby
-	void leaveLobby(String lobbyName);
-	
+		
 	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren welcher Spieler gewonnen hat
 	int compareTo(IPlayer player);	
 	
