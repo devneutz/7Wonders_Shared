@@ -3,6 +3,7 @@ import ch.fhnw.sevenwonders.enums.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IPlayer extends Serializable {	
 	
@@ -21,9 +22,7 @@ public interface IPlayer extends Serializable {
 	// Methode zum Auslesen des Spielernamen
 	String getName();
 	
-	// Methode zum Auslesen der Ressourcen welche der Spieler zur Verfügung hat
-	ArrayList<ResourceType> getResource(ResourceType resource);
-	
+		
 	// Methode zum Auslesen welches Board der Spieler nutzt
 	IBoard getBoard();
 	
@@ -34,6 +33,14 @@ public interface IPlayer extends Serializable {
 	
 	void setLobby(ILobby inLobby);
 	
+	int getMilitaryWarPoints();
+	
+	void setMilitaryWarPoints(int militaryWarPoints);
+	
+	ArrayList<ResourceType> getCoinWallet();
+	
+	void setCoinWallet(ArrayList<ResourceType> coinWallet);
+	
 	// Methode zur Festlegung das Karte gespielt wurde
 	void setCardPlayed(Boolean cardPlayed);
 		
@@ -41,7 +48,7 @@ public interface IPlayer extends Serializable {
 	int compareTo(IPlayer player);	
 	
 	//finale Punktzahlberrechnung
-	ArrayList<Integer> evaluate();
+	HashMap<String, Integer> evaluate();
 	
 	
 	int evaluateVictoryCoin();
@@ -49,13 +56,24 @@ public interface IPlayer extends Serializable {
 	int evaluateVictoryWonder();
 	
 	int evaluateVictoryDirect();
+	
+	int evaluateVictoryResearch();
+	
+	int evaluateVictoryTrade();
+	
+	int evaluateVictoryGuilds();
 
 	
 	
 	
 	
-	//lsitet alle verfügbaren Ressourcen des Spielers auf (sowohl Board als auch Cards)
-	ArrayList<ResourceType> getPlayerRessources();
+	//listet alle verfügbaren Ressourcen des Spielers auf (sowohl Board als auch Cards)
+	ArrayList<ResourceType> getPlayerResources();
+	
+	//listet alle verfügbaren Ressourcen der gespielten Karten des Spielers
+	ArrayList<ResourceType> getCardResources();
+	
+	
 	
 	
 }
