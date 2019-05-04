@@ -117,5 +117,66 @@ public class Board implements IBoard {
 		}
 		return 0;
 	}
+	
+	@Override
+	public Boolean getStepOneBuilt() {
+		// TODO Auto-generated method stub
+		return this.StepOneBuilt;
+	}
+	@Override
+	public Boolean getStepTwoBuilt() {
+		// TODO Auto-generated method stub
+		return this.StepTwoBuilt;
+	}
+	@Override
+	public Boolean getStepThreeBuilt() {
+		// TODO Auto-generated method stub
+		return this.StepThreeBuilt;
+	}
+	@Override
+	public void setStepOneBuilt() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setStepTwoBuilt() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setStepThreeBuilt() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	public ArrayList<ResourceType> getBoardResource() {
+		
+		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>();
+		
+		if (this.getStepOneBuilt() == true) {
+			for(int x = 0; x < this.getStepOneValue().size(); x++) {
+				tempResources.add(this.getStepOneValue().get(x));
+			}
+			
+		}
+		
+		if (this.getStepTwoBuilt() == true) {
+			for(int x = 0; x < this.getStepTwoValue().size(); x++) {
+				tempResources.add(this.getStepTwoValue().get(x));
+			}
+			
+		}
+		
+		if (this.getStepThreeBuilt() == true) {
+			for(int x = 0; x < this.getStepThreeValue().size(); x++) {
+				tempResources.add(this.getStepThreeValue().get(x));
+			}
+			
+		}
+					
+		return tempResources;
+	}
+
 
 }

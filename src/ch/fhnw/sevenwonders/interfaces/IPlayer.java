@@ -40,4 +40,22 @@ public interface IPlayer extends Serializable {
 	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren welcher Spieler gewonnen hat
 	int compareTo(IPlayer player);	
 	
+	//finale Punktzahlberrechnung
+	ArrayList<Integer> evaluate();
+	
+	
+	int evaluateVictoryCoin();
+	
+	int evaluateVictoryWonder();
+	
+	int evaluateVictoryDirect();
+
+	
+	
+	
+	
+	//lsitet alle verfügbaren Ressourcen des Spielers auf (sowohl Board als auch Cards)
+	ArrayList<ResourceType> getPlayerRessources();
+	
+	
 }

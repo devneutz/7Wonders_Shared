@@ -16,5 +16,19 @@ public interface IBoard extends Serializable {
 	
 	ArrayList<ResourceType> getStepTwoValue();
 	
+	ArrayList<ResourceType> getStepThreeValue();
+	
 	int getNextStageToBuild();
+		
+	Boolean getStepOneBuilt();
+	
+	Boolean getStepTwoBuilt();
+	Boolean getStepThreeBuilt();
+	
+	void	setStepOneBuilt();
+	void	setStepTwoBuilt();
+	void	setStepThreeBuilt();
+	
+	ArrayList<ResourceType> getBoardResource();
+
 }
