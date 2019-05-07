@@ -10,12 +10,12 @@ import ch.fhnw.sevenwonders.interfaces.ICard;
 
 /**
  * 
- * @author Matteo
+ * @author Matteo Farneti
  *
  */
 
 public class Card implements ICard {
-	
+
 	private String name;
 	private Age age;
 	private CardType cardType;
@@ -25,16 +25,10 @@ public class Card implements ICard {
 	private ArrayList<ResourceType> cost;
 	private boolean usedForPyramid;
 	private String imageName;
-	
-	public Card (String name,
-				 Age age,
-				 CardType cardType,
-				 int usedStartingFrom,
-				 ValueCalculationType valueCalculationType,
-				 ArrayList<ResourceType> value,
-				 ArrayList<ResourceType> cost,
-				 boolean usedForPyramid,
-				 String imageName) {
+
+	public Card(String name, Age age, CardType cardType, int usedStartingFrom,
+			ValueCalculationType valueCalculationType, ArrayList<ResourceType> value, ArrayList<ResourceType> cost,
+			boolean usedForPyramid, String imageName) {
 		this.name = name;
 		this.age = age;
 		this.cardType = cardType;
@@ -45,38 +39,41 @@ public class Card implements ICard {
 		this.usedForPyramid = usedForPyramid;
 		this.imageName = imageName;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public Age getAge() {
 		return age;
 	}
-	
+
 	public CardType getCardType() {
 		return cardType;
 	}
-	
+
 	public int getUsedStartingFrom() {
 		return usedStartingFrom;
 	}
-	
+
 	public boolean getUsedForPyramid() {
 		return usedForPyramid;
 	}
-	
+
 	public ArrayList<ResourceType> getCost() {
 		return cost;
 	}
-	
+
 	public ArrayList<ResourceType> getValue() {
 		return value;
 	}
-	// Überprüft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfügung stehenden Resourcen gedeckt werden können.
+
+	// Überprüft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfügung
+	// stehenden Resourcen gedeckt werden können.
 	public boolean isPlayable(ArrayList<ResourceType> availableResources) {
 		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>(availableResources.size());
-		for (ResourceType rt : availableResources) tempResources.add(rt);
+		for (ResourceType rt : availableResources)
+			tempResources.add(rt);
 		boolean result = true;
 		for (int i = 0; i < cost.size(); i++) {
 			for (int j = 0; j < tempResources.size(); j++) {
@@ -84,22 +81,21 @@ public class Card implements ICard {
 					tempResources.remove(j);
 					result = true;
 					break;
-				}
-				else {
+				} else {
 					result = false;
 				}
-				
+
 			}
-			
+
 		}
-			
-		return result;			
+
+		return result;
 	}
-	
+
 	public ValueCalculationType getValueCalculationType() {
-		return valueCalculationType;		
+		return valueCalculationType;
 	}
-	
+
 	public String getImageName() {
 		return imageName;
 	}

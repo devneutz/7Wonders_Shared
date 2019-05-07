@@ -7,12 +7,12 @@ import ch.fhnw.sevenwonders.interfaces.IBoard;
 
 /**
  * 
- * @author Matte
+ * @author Joel Neutzner, Ismael Liuzzi
  *
  */
 
 public class Board implements IBoard {
-	
+
 	private String name;
 	private ArrayList<ResourceType> boardResource;
 	private ArrayList<ResourceType> stepOneValue;
@@ -25,16 +25,11 @@ public class Board implements IBoard {
 	private boolean StepOneBuilt;
 	private boolean StepTwoBuilt;
 	private boolean StepThreeBuilt;
-	
-	public Board (String name,
-			ArrayList<ResourceType> boardResource,
-			ArrayList<ResourceType> stepOneValue,
-			ArrayList<ResourceType> stepOneCost,
-			ArrayList<ResourceType> stepTwoValue,
-			ArrayList<ResourceType> stepTwoCost,
-			ArrayList<ResourceType> stepThreeValue,
-			ArrayList<ResourceType> stepThreeCost,
-			String imageName) {
+
+	public Board(String name, ArrayList<ResourceType> boardResource, ArrayList<ResourceType> stepOneValue,
+			ArrayList<ResourceType> stepOneCost, ArrayList<ResourceType> stepTwoValue,
+			ArrayList<ResourceType> stepTwoCost, ArrayList<ResourceType> stepThreeValue,
+			ArrayList<ResourceType> stepThreeCost, String imageName) {
 		this.name = name;
 		this.boardResource = boardResource;
 		this.stepOneValue = stepOneValue;
@@ -45,13 +40,16 @@ public class Board implements IBoard {
 		this.stepTwoCost = stepThreeCost;
 		this.imageName = imageName;
 	}
+
 	@Override
 	public Boolean canBuild(int inStep, ArrayList<ResourceType> inResources) {
 		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>(inResources.size());
-		for (ResourceType rt : inResources) tempResources.add(rt);
+		for (ResourceType rt : inResources)
+			tempResources.add(rt);
 		boolean result = true;
-		
-		// Überprüft, ob die Kosten (StepOneCost) im Step 1 mit den verfügbaren Resourcen (inResources) gedeckt werden können.
+
+		// Überprüft, ob die Kosten (StepOneCost) im Step 1 mit den verfügbaren
+		// Resourcen (inResources) gedeckt werden können.
 		if (inStep == 1) {
 			for (int i = 0; i < stepOneCost.size(); i++) {
 				for (int j = 0; j < tempResources.size(); j++) {
@@ -59,14 +57,14 @@ public class Board implements IBoard {
 						tempResources.remove(j);
 						result = true;
 						break;
-					}
-					else {
+					} else {
 						result = false;
 					}
 				}
 			}
 		}
-		// Überprüft, ob die Kosten (StepTwoCost) im Step 2 mit den verfügbaren Resourcen (inResources) gedeckt werden können.
+		// Überprüft, ob die Kosten (StepTwoCost) im Step 2 mit den verfügbaren
+		// Resourcen (inResources) gedeckt werden können.
 		if (inStep == 2) {
 			for (int i = 0; i < stepTwoCost.size(); i++) {
 				for (int j = 0; j < tempResources.size(); j++) {
@@ -74,12 +72,26 @@ public class Board implements IBoard {
 						tempResources.remove(j);
 						result = true;
 						break;
-					}
-					else {
+					} else {
 						result = false;
 					}
 				}
-			}			
+			}
+		}
+		// Überprüft, ob die Kosten (StepThreeCost) im Step 3 mit den verfügbaren
+		// Resourcen (inResources) gedeckt werden können.
+		if (inStep == 3) {
+			for (int i = 0; i < stepThreeCost.size(); i++) {
+				for (int j = 0; j < tempResources.size(); j++) {
+					if (tempResources.get(j).equals(stepThreeCost.get(i))) {
+						tempResources.remove(j);
+						result = true;
+						break;
+					} else {
+						result = false;
+					}
+				}
+			}
 		}
 		return result;
 	}
@@ -98,85 +110,88 @@ public class Board implements IBoard {
 	public ArrayList<ResourceType> getStepTwoValue() {
 		return stepTwoValue;
 	}
-	
+
 	public ArrayList<ResourceType> getStepThreeValue() {
 		return stepThreeValue;
 	}
-	
+
 	public int getNextStageToBuild() {
-		if(!this.StepOneBuilt) {
+		if (!this.StepOneBuilt) {
 			return 1;
 		}
-		
-		if(!this.StepTwoBuilt) {
+
+		if (!this.StepTwoBuilt) {
 			return 2;
 		}
-		
-		if(!this.StepThreeBuilt) {
+
+		if (!this.StepThreeBuilt) {
 			return 3;
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public Boolean getStepOneBuilt() {
 		// TODO Auto-generated method stub
 		return this.StepOneBuilt;
 	}
+
 	@Override
 	public Boolean getStepTwoBuilt() {
 		// TODO Auto-generated method stub
 		return this.StepTwoBuilt;
 	}
+
 	@Override
 	public Boolean getStepThreeBuilt() {
 		// TODO Auto-generated method stub
 		return this.StepThreeBuilt;
 	}
+
 	@Override
-	public void setStepOneBuilt() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void setStepTwoBuilt() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void setStepThreeBuilt() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	public ArrayList<ResourceType> getBoardResource() {
-		
-		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>();
-		
-		if (this.getStepOneBuilt() == true) {
-			for(int x = 0; x < this.getStepOneValue().size(); x++) {
-				tempResources.add(this.getStepOneValue().get(x));
-			}
-			
-		}
-		
-		if (this.getStepTwoBuilt() == true) {
-			for(int x = 0; x < this.getStepTwoValue().size(); x++) {
-				tempResources.add(this.getStepTwoValue().get(x));
-			}
-			
-		}
-		
-		if (this.getStepThreeBuilt() == true) {
-			for(int x = 0; x < this.getStepThreeValue().size(); x++) {
-				tempResources.add(this.getStepThreeValue().get(x));
-			}
-			
-		}
-					
-		return tempResources;
+	public void setStepOneBuilt(boolean isBuilt) {
+		this.StepOneBuilt = isBuilt;
+
 	}
 
+	@Override
+	public void setStepTwoBuilt(boolean isBuilt) {
+		this.StepTwoBuilt = isBuilt;
+
+	}
+
+	@Override
+	public void setStepThreeBuilt(boolean isBuilt) {
+		this.StepThreeBuilt = isBuilt;
+
+	}
+
+	public ArrayList<ResourceType> getBoardResource() {
+
+		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>();
+
+		if (this.getStepOneBuilt() == true) {
+			for (int x = 0; x < this.getStepOneValue().size(); x++) {
+				tempResources.add(this.getStepOneValue().get(x));
+			}
+
+		}
+
+		if (this.getStepTwoBuilt() == true) {
+			for (int x = 0; x < this.getStepTwoValue().size(); x++) {
+				tempResources.add(this.getStepTwoValue().get(x));
+			}
+
+		}
+
+		if (this.getStepThreeBuilt() == true) {
+			for (int x = 0; x < this.getStepThreeValue().size(); x++) {
+				tempResources.add(this.getStepThreeValue().get(x));
+			}
+
+		}
+
+		return tempResources;
+	}
 
 }

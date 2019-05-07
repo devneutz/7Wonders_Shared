@@ -7,29 +7,141 @@ import java.util.logging.Logger;
 import ch.fhnw.sevenwonders.enums.*;
 import ch.fhnw.sevenwonders.interfaces.*;
 
+/**
+ * 
+ * @author Matteo Farneti, Ismael Liuzzi
+ *
+ */
+
 public class Player implements IPlayer {
 
 	private transient final Logger logger = Logger.getLogger("");
 	private String passwordHash;
 	private String nickname;
 	private ILobby lobby;
-	private int militaryWarPoints;
+	private int militaryWarPoints = 0;
 	private ArrayList<ICard> cards;
 	private ArrayList<ICard> CardStack;
 	private IBoard board;
 	private boolean cardPlayed;
+	private Card selectedCard;
 	private ArrayList<ResourceType> coinWallet;
 
 	static final long serialVersionUID = 12L;
-	
+
 	@Override
 	public void setPasswordHash(String pwHash) {
 		this.passwordHash = pwHash;
 	}
-	
+
 	@Override
 	public String getPassword() {
 		return this.passwordHash;
+	}
+
+	public void monetizeCard(ICard card, IPlayer player) {
+
+		player.getCoinWallet().add(ResourceType.Coin);
+		player.getCoinWallet().add(ResourceType.Coin);
+		player.getCoinWallet().add(ResourceType.Coin);
+
+		player.setCardPlayed(true);
+
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i) == card) {
+				player.getCards().remove(i);
+				break;
+			}
+		}
+	}
+
+	public void playCard(ICard card, IPlayer player) {
+
+		if (card.isPlayable(player.getPlayerResources())) {
+
+			if (card.getCardType().equals(CardType.CivilianStructures)
+					|| card.getCardType().equals(CardType.ManufacturedGoods)
+					|| card.getCardType().equals(CardType.RawMaterials)
+					|| card.getCardType().equals(CardType.ScientificStructures)) {
+
+				player.getPlayerResources().addAll(card.getValue());
+
+			}
+
+			if (card.getCardType().equals(CardType.CommercialStructures)) {
+				for (int i = 0; i < card.getValue().size(); i++) {
+					if (card.getValue().get(i).equals(ResourceType.Coin)) {
+
+						player.getCoinWallet().add(ResourceType.Coin);
+					}
+					if (card.getValue().get(i).equals(ResourceType.Clay)
+							|| card.getValue().get(i).equals(ResourceType.Cloth)
+							|| card.getValue().get(i).equals(ResourceType.Compasses)
+							|| card.getValue().get(i).equals(ResourceType.GearWheel)
+							|| card.getValue().get(i).equals(ResourceType.Glas)
+							|| card.getValue().get(i).equals(ResourceType.Ore)
+							|| card.getValue().get(i).equals(ResourceType.Papyrus)
+							|| card.getValue().get(i).equals(ResourceType.Stone)
+							|| card.getValue().get(i).equals(ResourceType.StonePanel)
+							|| card.getValue().get(i).equals(ResourceType.Wood)
+							|| card.getValue().get(i).equals(ResourceType.VictoryPoint)) {
+
+						player.getPlayerResources().addAll(card.getValue());
+
+					}
+				}
+			}
+			if (card.getCardType().equals(CardType.MilitaryStructures)) {
+
+				int mwp = card.getValue().size();
+				player.setMilitaryWarPoints(mwp);
+			}
+
+			player.setCardPlayed(true);
+
+			for (int i = 0; i < cards.size(); i++) {
+				if (cards.get(i) == card) {
+					player.getCards().remove(i);
+					break;
+				}
+			}
+		}
+	}
+
+	public void useCardForBuilding(ICard card, IPlayer player, IBoard board) {
+
+		if (board.canBuild(board.getNextStageToBuild(), player.getPlayerResources())) {
+
+			int nextStage = board.getNextStageToBuild();
+			if (nextStage == 1) {
+				board.setStepOneBuilt(true);
+				player.getPlayerResources().addAll(board.getStepOneValue());
+			}
+			if (nextStage == 2) {
+				board.setStepTwoBuilt(true);
+				player.getPlayerResources().addAll(board.getStepTwoValue());
+			}
+			if (nextStage == 3) {
+				board.setStepThreeBuilt(true);
+				player.getPlayerResources().addAll(board.getStepThreeValue());
+			}
+			player.setCardPlayed(true);
+
+			for (int i = 0; i < cards.size(); i++) {
+				if (cards.get(i) == card) {
+					player.getCards().remove(i);
+					break;
+				}
+			}
+		}
+	}
+
+	public Card getSelectedCard() {
+		return this.selectedCard;
+	}
+
+	public ArrayList<ICard> getCards() {
+		return this.cards;
 	}
 
 	@Override
@@ -42,11 +154,13 @@ public class Player implements IPlayer {
 		return this.nickname;
 	}
 
+	public ArrayList<ICard> getCardStack() {
+		return this.CardStack;
+	}
 
 	@Override
 	public IBoard getBoard() {
-		// TODO Auto-generated method stub
-		return null;
+		return board;
 	}
 
 	@Override
@@ -58,7 +172,7 @@ public class Player implements IPlayer {
 	@Override
 	public void setCardPlayed(Boolean cardPlayed) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -80,10 +194,8 @@ public class Player implements IPlayer {
 
 	@Override
 	public void setLobby(ILobby inLobby) {
-		this.lobby = inLobby;	
+		this.lobby = inLobby;
 	}
-	
-	
 
 	public ArrayList<ResourceType> getCoinWallet() {
 		return coinWallet;
@@ -98,90 +210,86 @@ public class Player implements IPlayer {
 	}
 
 	public void setMilitaryWarPoints(int militaryWarPoints) {
-		this.militaryWarPoints = militaryWarPoints;
+		this.militaryWarPoints += militaryWarPoints;
 	}
-	
-	//alle Karten Ressourcen
+
+	// alle Karten Ressourcen
 	public ArrayList<ResourceType> getCardResources() {
 		ArrayList<ResourceType> cardResource = new ArrayList<ResourceType>();
-		
-		for(int x = 0; x < this.cards.size(); x++) {
-			cardResource.addAll(this.cards.get(x).getValue());	
-		
+
+		for (int x = 0; x < this.cards.size(); x++) {
+			cardResource.addAll(this.cards.get(x).getValue());
+
 		}
 		return cardResource;
 	}
-	
-	//alle Spieler Ressourcen
+
+	// alle Spieler Ressourcen
 	public ArrayList<ResourceType> getPlayerResources() {
 		ArrayList<ResourceType> allResources = new ArrayList<ResourceType>();
-		
+
 		allResources.addAll(this.getCardResources());
 		allResources.addAll(this.getBoard().getBoardResource());
-				
-		
+
 		return allResources;
 	}
-	
 
 	@Override
 	public int evaluateVictoryCoin() {
 		int c = 0;
-		for(int x = 0; x < this.getCoinWallet().size(); x++) {
-			if(this.getCoinWallet().get(x) == ResourceType.Coin) {
-			c++;
-			}				
+		for (int x = 0; x < this.getCoinWallet().size(); x++) {
+			if (this.getCoinWallet().get(x) == ResourceType.Coin) {
+				c++;
+			}
 		}
-		return c/3;
+		return c / 3;
 	}
 
 	@Override
 	public int evaluateVictoryWonder() {
 		int w = 0;
-		for(int x = 0; x < this.getBoard().getBoardResource().size(); x++) {
-			if(this.getBoard().getBoardResource().get(x) == ResourceType.VictoryPoint) {
-			w++;
-			}	
+		for (int x = 0; x < this.getBoard().getBoardResource().size(); x++) {
+			if (this.getBoard().getBoardResource().get(x) == ResourceType.VictoryPoint) {
+				w++;
+			}
 		}
-		
+
 		return w;
 	}
 
 	@Override
 	public int evaluateVictoryDirect() {
 		int d = 0;
-		
-		for(int x = 0; x < this.getCardResources().size(); x++) {
-			if(this.getCardResources().get(x) == ResourceType.VictoryPoint) {
+
+		for (int x = 0; x < this.getCardResources().size(); x++) {
+			if (this.getCardResources().get(x) == ResourceType.VictoryPoint) {
 				d++;
-				}
 			}
+		}
 		return d;
 	}
 
 	@Override
-	//@JOE bitte Hilfe bei algo.
+	// @JOE bitte Hilfe bei algo.
 	public int evaluateVictoryResearch() {
-		int r = 0, tafel = 0, zirkel =  0, zahnrad = 0; 
-		
-		for(int x = 0; x < this.getPlayerResources().size(); x++) {
-				switch (this.getPlayerResources().get(x)) {
-				
-				case GearWheel:
-					zahnrad++;
-					break;
-					
-				case StonePanel:
-					tafel++;
-					break;
-					
-				case Compasses:
-					zirkel++;
-					break;
-				}
-				
+		int r = 0, tafel = 0, zirkel = 0, zahnrad = 0;
+
+		for (int x = 0; x < this.getPlayerResources().size(); x++) {
+			switch (this.getPlayerResources().get(x)) {
+
+			case GearWheel:
+				zahnrad++;
+				break;
+
+			case StonePanel:
+				tafel++;
+				break;
+
+			case Compasses:
+				zirkel++;
+				break;
+			}
 		}
-		
 		return 0;
 	}
 
@@ -197,11 +305,10 @@ public class Player implements IPlayer {
 		return 0;
 	}
 
-
 	public HashMap<String, Integer> evaluate() {
-	
+
 		HashMap<String, Integer> winPoints = new HashMap<String, Integer>();
-		
+
 		winPoints.put("Militärkonflikt", this.getMilitaryWarPoints());
 		winPoints.put("Coins", this.evaluateVictoryCoin());
 		winPoints.put("Weltwunder", this.evaluateVictoryWonder());
@@ -209,11 +316,7 @@ public class Player implements IPlayer {
 		winPoints.put("Forschungsgebäude", this.evaluateVictoryResearch());
 		winPoints.put("Handelsgebäude", this.evaluateVictoryTrade());
 		winPoints.put("Gilden", this.evaluateVictoryGuilds());
-		
+
 		return winPoints;
-		
 	}
-
-
-
 }
