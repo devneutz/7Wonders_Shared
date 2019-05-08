@@ -66,9 +66,6 @@ public interface IPlayer extends Serializable {
 
 	int evaluateVictoryResearch();
 
-	int evaluateVictoryTrade();
-
-	int evaluateVictoryGuilds();
 
 	// listet alle verfügbaren Ressourcen des Spielers auf (sowohl Board als auch
 	// Cards)
