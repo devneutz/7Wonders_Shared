@@ -213,7 +213,9 @@ public class Player implements IPlayer {
 		this.militaryWarPoints += militaryWarPoints;
 	}
 
-	// alle Karten Ressourcen
+	/**
+	 *  gibt alle Ressourcen der gespielten Karten aus
+	 */
 	public ArrayList<ResourceType> getCardResources() {
 		ArrayList<ResourceType> cardResource = new ArrayList<ResourceType>();
 
@@ -224,7 +226,9 @@ public class Player implements IPlayer {
 		return cardResource;
 	}
 
-	// alle Spieler Ressourcen
+	/**
+	 *  alle Ressourcen aus, die der Spieler zur Verfügung hat
+	 */
 	public ArrayList<ResourceType> getPlayerResources() {
 		ArrayList<ResourceType> allResources = new ArrayList<ResourceType>();
 
@@ -233,7 +237,10 @@ public class Player implements IPlayer {
 
 		return allResources;
 	}
-
+	
+	/**
+	 * Gibt die Gewinnpunkte aufgrund der Coins an
+	 */
 	@Override
 	public int evaluateVictoryCoin() {
 		int c = 0;
@@ -245,6 +252,9 @@ public class Player implements IPlayer {
 		return c / 3;
 	}
 
+	/**
+	 * Gibt die Gewinnpunkte aufgrund der Weltwunderbauten an
+	 */
 	@Override
 	public int evaluateVictoryWonder() {
 		int w = 0;
@@ -256,7 +266,10 @@ public class Player implements IPlayer {
 
 		return w;
 	}
-
+	
+	/**
+	 * Gibt die Gewinnpunkte aufgrund gespielter PRofankarten an
+	 */
 	@Override
 	public int evaluateVictoryDirect() {
 		int d = 0;
@@ -269,11 +282,17 @@ public class Player implements IPlayer {
 		return d;
 	}
 
+	
+	/**
+	 * Gibt die Gewinnpunkte aufgrund der Forschungsgebäude an
+	 */
 	@Override
-	// @JOE bitte Hilfe bei algo.
+	
 	public int evaluateVictoryResearch() {
 		int r = 0, tafel = 0, zirkel = 0, zahnrad = 0;
-
+		
+		
+		// Zählen der verschiedenen Forschungssymbole
 		for (int x = 0; x < this.getPlayerResources().size(); x++) {
 			switch (this.getPlayerResources().get(x)) {
 
@@ -290,21 +309,53 @@ public class Player implements IPlayer {
 				break;
 			}
 		}
-		return 0;
+		
+		//Punkte berechnung für gleiche Symbole
+		ArrayList <Integer> temp = new ArrayList <Integer>();
+		temp.add(0, tafel);
+		temp.add(1, zirkel);
+		temp.add(2, zahnrad);
+		for (int x = 0; x < temp.size(); x++)	{
+			
+			switch (temp.get(x)) {
+
+			case 0: break;
+
+			case 1:
+				r++;
+				break;
+
+			case 2:
+				r=r+4;
+				break;
+				
+			case 3:
+				r=r+9;
+				break;
+				
+			case 4:
+				r=r+16;
+				break;
+			}
+			
+		}
+		
+		
+		//Punkteberechnung für Paket à 3verschiedenen Sympbolen
+		while (tafel != 0 && zirkel !=0  && zahnrad != 0) {
+			r++;
+			tafel --;
+			zirkel--;
+			zahnrad--;
+		}
+	
+				
+		return r;
 	}
 
-	@Override
-	public int evaluateVictoryTrade() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int evaluateVictoryGuilds() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	/**
+	 * Gibt alle Siegpunkte eines Spielers zurück
+	 */
 	public HashMap<String, Integer> evaluate() {
 
 		HashMap<String, Integer> winPoints = new HashMap<String, Integer>();
@@ -314,8 +365,8 @@ public class Player implements IPlayer {
 		winPoints.put("Weltwunder", this.evaluateVictoryWonder());
 		winPoints.put("Profanbauten", this.evaluateVictoryDirect());
 		winPoints.put("Forschungsgebäude", this.evaluateVictoryResearch());
-		winPoints.put("Handelsgebäude", this.evaluateVictoryTrade());
-		winPoints.put("Gilden", this.evaluateVictoryGuilds());
+		winPoints.put("TOTAL", (this.getMilitaryWarPoints()+this.evaluateVictoryCoin()+this.evaluateVictoryWonder()+this.evaluateVictoryDirect()+this.evaluateVictoryResearch()));
+	
 
 		return winPoints;
 	}
