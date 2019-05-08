@@ -2,7 +2,6 @@ package ch.fhnw.sevenwonders.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 import ch.fhnw.sevenwonders.enums.*;
 import ch.fhnw.sevenwonders.interfaces.*;
@@ -15,7 +14,6 @@ import ch.fhnw.sevenwonders.interfaces.*;
 
 public class Player implements IPlayer {
 
-	private transient final Logger logger = Logger.getLogger("");
 	private String passwordHash;
 	private String nickname;
 	private ILobby lobby;
@@ -23,11 +21,14 @@ public class Player implements IPlayer {
 	private ArrayList<ICard> cards;
 	private ArrayList<ICard> CardStack;
 	private IBoard board;
-	private boolean cardPlayed;
-	private Card selectedCard;
+	
 	private ArrayList<ResourceType> coinWallet;
 
 	static final long serialVersionUID = 12L;
+	
+	public Player() {
+		this.coinWallet = new ArrayList<ResourceType>();
+	}
 
 	@Override
 	public void setPasswordHash(String pwHash) {
@@ -39,32 +40,35 @@ public class Player implements IPlayer {
 		return this.passwordHash;
 	}
 
-	public void monetizeCard(ICard card, IPlayer player) {
+	/***
+	 * Zerstören der Karte, was in 3 Coins für den Spieler resultiert
+	 * Es findet keine Prüfung statt, da dies immer funktionieren muss.
+	 */
+	public void monetizeCard(ICard card) {
 
-		player.getCoinWallet().add(ResourceType.Coin);
-		player.getCoinWallet().add(ResourceType.Coin);
-		player.getCoinWallet().add(ResourceType.Coin);
+		getCoinWallet().add(ResourceType.Coin);
+		getCoinWallet().add(ResourceType.Coin);
+		getCoinWallet().add(ResourceType.Coin);
 
-		player.setCardPlayed(true);
-
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i) == card) {
-				player.getCards().remove(i);
+		for (int i = 0; i < cards.size()-1; i++) {
+			// Der Bildname ist immer eindeutig
+			if (cards.get(i).getImageName().equals(card.getImageName())) {
+				getCards().remove(i);
 				break;
 			}
 		}
 	}
 
-	public void playCard(ICard card, IPlayer player) {
+	public void playCard(ICard card) {
 
-		if (card.isPlayable(player.getPlayerResources())) {
+		if (card.isPlayable(getPlayerResources())) {
 
 			if (card.getCardType().equals(CardType.CivilianStructures)
 					|| card.getCardType().equals(CardType.ManufacturedGoods)
 					|| card.getCardType().equals(CardType.RawMaterials)
 					|| card.getCardType().equals(CardType.ScientificStructures)) {
 
-				player.getPlayerResources().addAll(card.getValue());
+				getPlayerResources().addAll(card.getValue());
 
 			}
 
@@ -72,7 +76,7 @@ public class Player implements IPlayer {
 				for (int i = 0; i < card.getValue().size(); i++) {
 					if (card.getValue().get(i).equals(ResourceType.Coin)) {
 
-						player.getCoinWallet().add(ResourceType.Coin);
+						getCoinWallet().add(ResourceType.Coin);
 					}
 					if (card.getValue().get(i).equals(ResourceType.Clay)
 							|| card.getValue().get(i).equals(ResourceType.Cloth)
@@ -86,7 +90,7 @@ public class Player implements IPlayer {
 							|| card.getValue().get(i).equals(ResourceType.Wood)
 							|| card.getValue().get(i).equals(ResourceType.VictoryPoint)) {
 
-						player.getPlayerResources().addAll(card.getValue());
+						getPlayerResources().addAll(card.getValue());
 
 					}
 				}
@@ -94,50 +98,43 @@ public class Player implements IPlayer {
 			if (card.getCardType().equals(CardType.MilitaryStructures)) {
 
 				int mwp = card.getValue().size();
-				player.setMilitaryWarPoints(mwp);
+				setMilitaryWarPoints(mwp);
 			}
-
-			player.setCardPlayed(true);
 
 			for (int i = 0; i < cards.size(); i++) {
 				if (cards.get(i) == card) {
-					player.getCards().remove(i);
+					getCards().remove(i);
 					break;
 				}
 			}
 		}
 	}
 
-	public void useCardForBuilding(ICard card, IPlayer player, IBoard board) {
+	public void useCardForBuilding(ICard card) {
 
-		if (board.canBuild(board.getNextStageToBuild(), player.getPlayerResources())) {
+		if (board.canBuild(board.getNextStageToBuild(), getPlayerResources())) {
 
 			int nextStage = board.getNextStageToBuild();
 			if (nextStage == 1) {
 				board.setStepOneBuilt(true);
-				player.getPlayerResources().addAll(board.getStepOneValue());
+				getPlayerResources().addAll(board.getStepOneValue());
 			}
 			if (nextStage == 2) {
 				board.setStepTwoBuilt(true);
-				player.getPlayerResources().addAll(board.getStepTwoValue());
+				getPlayerResources().addAll(board.getStepTwoValue());
 			}
 			if (nextStage == 3) {
 				board.setStepThreeBuilt(true);
-				player.getPlayerResources().addAll(board.getStepThreeValue());
+				getPlayerResources().addAll(board.getStepThreeValue());
 			}
-			player.setCardPlayed(true);
 
 			for (int i = 0; i < cards.size(); i++) {
 				if (cards.get(i) == card) {
-					player.getCards().remove(i);
+					getCards().remove(i);
 					break;
 				}
 			}
 		}
-	}
-
-	public Card getSelectedCard() {
-		return this.selectedCard;
 	}
 
 	public ArrayList<ICard> getCards() {
@@ -164,18 +161,6 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public boolean getCardPlayed() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void setCardPlayed(Boolean cardPlayed) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public int compareTo(IPlayer player) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -199,10 +184,6 @@ public class Player implements IPlayer {
 
 	public ArrayList<ResourceType> getCoinWallet() {
 		return coinWallet;
-	}
-
-	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
-		this.coinWallet = coinWallet;
 	}
 
 	public int getMilitaryWarPoints() {

@@ -30,19 +30,14 @@ public interface IPlayer extends Serializable {
 	// provisorisch erstellt --> evtl. nicht benötigt
 	ArrayList<ICard> getCards();
 
-	Card getSelectedCard();
+	void monetizeCard(ICard card);
 
-	void monetizeCard(ICard card, IPlayer player);
+	void playCard(ICard card);
 
-	void playCard(ICard card, IPlayer player);
-
-	void useCardForBuilding(ICard card, IPlayer player, IBoard board);
+	void useCardForBuilding(ICard card);
 
 	// Methode zum Auslesen welches Board der Spieler nutzt
 	IBoard getBoard();
-
-	// Methode zur Überprüfung ob Karte gespielt wurde
-	boolean getCardPlayed();
 
 	ILobby getLobby();
 
@@ -55,9 +50,6 @@ public interface IPlayer extends Serializable {
 	ArrayList<ResourceType> getCoinWallet();
 
 	void setCoinWallet(ArrayList<ResourceType> coinWallet);
-
-	// Methode zur Festlegung das Karte gespielt wurde
-	void setCardPlayed(Boolean cardPlayed);
 
 	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren
 	// welcher Spieler gewonnen hat
