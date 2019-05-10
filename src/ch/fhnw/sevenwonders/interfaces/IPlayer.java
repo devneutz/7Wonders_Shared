@@ -49,8 +49,6 @@ public interface IPlayer extends Serializable {
 
 	ArrayList<ResourceType> getCoinWallet();
 
-	void setCoinWallet(ArrayList<ResourceType> coinWallet);
-
 	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren
 	// welcher Spieler gewonnen hat
 	int compareTo(IPlayer player);
