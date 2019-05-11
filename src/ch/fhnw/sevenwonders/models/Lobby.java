@@ -33,6 +33,11 @@ public class Lobby implements ILobby {
 		this.numPlayers = numPlayers;
 	}
 	
+		
+	public int getNumPlayers() {
+		return numPlayers;
+	}
+
 	@Override
 	public void setLobbyMaster(IPlayer lobbyMaster) {
 		this.lobbyMaster = lobbyMaster;
@@ -47,4 +52,14 @@ public class Lobby implements ILobby {
 	public String toString() {
 		return lobbyName;
 	}
+
+	public ArrayList<IPlayer> getLobbyPlayers() {
+		return lobbyPlayers;
+	}
+
+	public void setLobbyPlayers(ArrayList<IPlayer> lobbyPlayers) {
+		this.lobbyPlayers = lobbyPlayers;
+	}
+	
+	
 }
