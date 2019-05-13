@@ -50,9 +50,9 @@ public class Player implements IPlayer {
 		getCoinWallet().add(ResourceType.Coin);
 		getCoinWallet().add(ResourceType.Coin);
 
-		for (int i = 0; i < cards.size()-1; i++) {
+		for (int i = 0; i < CardStack.size(); i++) {
 			// Der Bildname ist immer eindeutig
-			if (cards.get(i).getImageName().equals(card.getImageName())) {
+			if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 				getCards().remove(i);
 				break;
 			}
@@ -61,48 +61,10 @@ public class Player implements IPlayer {
 
 	public void playCard(ICard card) {
 
-		if (card.isPlayable(getPlayerResources())) {
-
-			if (card.getCardType().equals(CardType.CivilianStructures)
-					|| card.getCardType().equals(CardType.ManufacturedGoods)
-					|| card.getCardType().equals(CardType.RawMaterials)
-					|| card.getCardType().equals(CardType.ScientificStructures)) {
-
-				getPlayerResources().addAll(card.getValue());
-
-			}
-
-			if (card.getCardType().equals(CardType.CommercialStructures)) {
-				for (int i = 0; i < card.getValue().size(); i++) {
-					if (card.getValue().get(i).equals(ResourceType.Coin)) {
-
-						getCoinWallet().add(ResourceType.Coin);
-					}
-					if (card.getValue().get(i).equals(ResourceType.Clay)
-							|| card.getValue().get(i).equals(ResourceType.Cloth)
-							|| card.getValue().get(i).equals(ResourceType.Compasses)
-							|| card.getValue().get(i).equals(ResourceType.GearWheel)
-							|| card.getValue().get(i).equals(ResourceType.Glas)
-							|| card.getValue().get(i).equals(ResourceType.Ore)
-							|| card.getValue().get(i).equals(ResourceType.Papyrus)
-							|| card.getValue().get(i).equals(ResourceType.Stone)
-							|| card.getValue().get(i).equals(ResourceType.StonePanel)
-							|| card.getValue().get(i).equals(ResourceType.Wood)
-							|| card.getValue().get(i).equals(ResourceType.VictoryPoint)) {
-
-						getPlayerResources().addAll(card.getValue());
-
-					}
-				}
-			}
-			if (card.getCardType().equals(CardType.MilitaryStructures)) {
-
-				int mwp = card.getValue().size();
-				setMilitaryWarPoints(mwp);
-			}
-
-			for (int i = 0; i < cards.size(); i++) {
-				if (cards.get(i) == card) {
+		if (card.isPlayable(getCards())) {
+			
+			for (int i = 0; i < CardStack.size(); i++) {
+				if (CardStack.get(i) == card) {
 					getCards().remove(i);
 					break;
 				}
@@ -128,8 +90,8 @@ public class Player implements IPlayer {
 				getPlayerResources().addAll(board.getStepThreeValue());
 			}
 
-			for (int i = 0; i < cards.size(); i++) {
-				if (cards.get(i) == card) {
+			for (int i = 0; i < CardStack.size(); i++) {
+				if (CardStack.get(i) == card) {
 					getCards().remove(i);
 					break;
 				}
