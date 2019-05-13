@@ -13,6 +13,10 @@ public class Lobby implements ILobby {
 	private ArrayList<IPlayer> lobbyPlayers;
 	private int numPlayers;
 
+	public Lobby() {
+		this.lobbyPlayers = new ArrayList<IPlayer>();
+	}
+	
 	@Override
 	public void startLobby(List<IPlayer> list) {
 		// TODO Auto-generated method stub		
@@ -33,6 +37,11 @@ public class Lobby implements ILobby {
 		this.numPlayers = numPlayers;
 	}
 	
+		
+	public int getNumPlayers() {
+		return numPlayers;
+	}
+
 	@Override
 	public void setLobbyMaster(IPlayer lobbyMaster) {
 		this.lobbyMaster = lobbyMaster;
@@ -47,4 +56,14 @@ public class Lobby implements ILobby {
 	public String toString() {
 		return lobbyName;
 	}
+
+	public ArrayList<IPlayer> getLobbyPlayers() {
+		return lobbyPlayers;
+	}
+	
+	public void addPlayer(IPlayer inPlayer) {
+		this.lobbyPlayers.add(inPlayer);
+	}
+	
+	
 }

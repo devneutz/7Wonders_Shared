@@ -313,4 +313,9 @@ public class Player implements IPlayer {
 
 		return winPoints;
 	}
+	
+	@Override
+	public String toString() {
+		return this.nickname;
+	}
 }
