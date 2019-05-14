@@ -25,6 +25,8 @@ public class Card implements ICard {
 	private ArrayList<ResourceType> cost;
 	private boolean usedForPyramid;
 	private String imageName;
+	
+	static final long serialVersionUID = 12L;
 
 	public Card(String name, Age age, CardType cardType, int usedStartingFrom,
 			ValueCalculationType valueCalculationType, ArrayList<ResourceType> value, ArrayList<ResourceType> cost,
@@ -38,6 +40,7 @@ public class Card implements ICard {
 		this.cost = cost;
 		this.usedForPyramid = usedForPyramid;
 		this.imageName = imageName;
+		
 	}
 
 	public String getName() {

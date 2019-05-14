@@ -32,7 +32,7 @@ class Test_Card {
 		// Karte 1
 		tmpValue.add(ResourceType.Clay);
 				
-		Card c1 = new Card("", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c1 = new Card("TestCard1", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c1);
 		tmpValue.clear();
@@ -40,7 +40,7 @@ class Test_Card {
 		//Karte 2
 		tmpValue.add(ResourceType.Clay);
 		
-		Card c2 = new Card("", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c2 = new Card("TestCard2", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c2);
 		tmpValue.clear();
@@ -48,7 +48,7 @@ class Test_Card {
 		// Karte 3
 		tmpValue.add(ResourceType.Papyrus);
 		
-		Card c3 = new Card("", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c3 = new Card("TestCard3", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c3);
 		tmpValue.clear();
@@ -59,7 +59,7 @@ class Test_Card {
 		tmpCost.add(ResourceType.Clay);
 		tmpCost.add(ResourceType.Papyrus);
 		
-		Card c = new Card("TestCard", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
+		ICard c = new Card("TestCard4", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
 		
 		tmpCost.clear();
 		tmpValue.clear();
@@ -81,7 +81,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Clay);
 		tmpValue.add(ResourceType.Clay);
 				
-		Card c1 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c1 = new Card("TestCard5", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c1);
 		tmpValue.clear();
@@ -90,7 +90,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Stone);
 		tmpValue.add(ResourceType.Papyrus);
 		
-		Card c2 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c2 = new Card("TestCard6", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c2);
 		tmpValue.clear();
@@ -101,7 +101,7 @@ class Test_Card {
 		tmpCost.add(ResourceType.Clay);
 		tmpCost.add(ResourceType.Papyrus);
 		
-		Card c = new Card("TestCard", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
+		ICard c = new Card("TestCard7", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
 		
 		tmpCost.clear();
 		tmpValue.clear();
@@ -123,7 +123,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Clay);
 		tmpValue.add(ResourceType.Wood);
 				
-		Card c1 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c1 = new Card("TestCard8", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c1);
 		tmpValue.clear();
@@ -132,7 +132,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Stone);
 		tmpValue.add(ResourceType.Clay);
 		
-		Card c2 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c2 = new Card("TestCard9", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c2);
 		tmpValue.clear();
@@ -141,7 +141,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Stone);
 		tmpValue.add(ResourceType.Papyrus);
 				
-		Card c3 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c3 = new Card("TestCard10", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 				
 		tmpCards.add(c3);
 		tmpValue.clear();
@@ -152,7 +152,7 @@ class Test_Card {
 		tmpCost.add(ResourceType.Clay);
 		tmpCost.add(ResourceType.Papyrus);
 		
-		Card c = new Card("TestCard", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
+		ICard c = new Card("TestCard11", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
 		
 		tmpCost.clear();
 		tmpValue.clear();
@@ -174,7 +174,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Clay);
 		tmpValue.add(ResourceType.Wood);
 				
-		Card c1 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c1 = new Card("TestCard12", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c1);
 		tmpValue.clear();
@@ -183,7 +183,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Stone);
 		tmpValue.add(ResourceType.Clay);
 		
-		Card c2 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c2 = new Card("TestCard13", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c2);
 		tmpValue.clear();
@@ -191,7 +191,7 @@ class Test_Card {
 		//Karte 3
 		tmpValue.add(ResourceType.Papyrus);
 				
-		Card c3 = new Card("", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c3 = new Card("TestCard14", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 				
 		tmpCards.add(c3);
 		tmpValue.clear();
@@ -202,7 +202,7 @@ class Test_Card {
 		tmpCost.add(ResourceType.Clay);
 		tmpCost.add(ResourceType.Papyrus);
 		
-		Card c = new Card("TestCard", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
+		ICard c = new Card("TestCard15", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
 		
 		tmpCost.clear();
 		tmpValue.clear();
@@ -224,7 +224,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Ore);
 		tmpValue.add(ResourceType.Wood);
 				
-		Card c1 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c1 = new Card("TestCard16", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c1);
 		tmpValue.clear();
@@ -233,7 +233,7 @@ class Test_Card {
 		tmpValue.add(ResourceType.Stone);
 		tmpValue.add(ResourceType.Clay);
 		
-		Card c2 = new Card("", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c2 = new Card("TestCard17", Age.AgeI, CardType.RawMaterials, 3, ValueCalculationType.Or, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 		
 		tmpCards.add(c2);
 		tmpValue.clear();
@@ -241,7 +241,7 @@ class Test_Card {
 		//Karte 3
 		tmpValue.add(ResourceType.Papyrus);
 				
-		Card c3 = new Card("", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
+		ICard c3 = new Card("TestCard18", Age.AgeI, CardType.RawMaterials, 3, null, tmpValue, tmpCost, false, "RM_Ziegelei_3.jpg");
 				
 		tmpCards.add(c3);
 		tmpValue.clear();
@@ -252,7 +252,7 @@ class Test_Card {
 		tmpCost.add(ResourceType.Clay);
 		tmpCost.add(ResourceType.Papyrus);
 		
-		Card c = new Card("TestCard", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
+		ICard c = new Card("TestCard19", Age.AgeI, CardType.ScientificStructures, 3, ValueCalculationType.And, tmpValue, tmpCost, false, "TestName");
 		
 		tmpCost.clear();
 		tmpValue.clear();
