@@ -24,7 +24,7 @@ public class Player implements IPlayer {
 	private ArrayList<ResourceType> coinWallet;
 
 	static final long serialVersionUID = 12L;
-	
+
 	public Player() {
 		this.coinWallet = new ArrayList<ResourceType>();
 		coinWallet.add(ResourceType.Coin);
@@ -43,8 +43,8 @@ public class Player implements IPlayer {
 	}
 
 	/***
-	 * Zerstören der Karte, was in 3 Coins für den Spieler resultiert
-	 * Es findet keine Prüfung statt, da dies immer funktionieren muss.
+	 * Zerstören der Karte, was in 3 Coins für den Spieler resultiert Es findet
+	 * keine Prüfung statt, da dies immer funktionieren muss.
 	 */
 	public void monetizeCard(ICard card) {
 
@@ -63,7 +63,7 @@ public class Player implements IPlayer {
 
 	public void playCard(ICard card) {
 		if (card.isPlayable(this)) {
-			
+
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i) == card) {
 					getCards().remove(i);
@@ -158,7 +158,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 *  gibt alle Ressourcen der gespielten Karten aus
+	 * gibt alle Ressourcen der gespielten Karten aus
 	 */
 	public ArrayList<ResourceType> getCardResources() {
 		ArrayList<ResourceType> cardResource = new ArrayList<ResourceType>();
@@ -171,7 +171,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 *  alle Ressourcen aus, die der Spieler zur Verfügung hat
+	 * alle Ressourcen aus, die der Spieler zur Verfügung hat
 	 */
 	public ArrayList<ResourceType> getPlayerResources() {
 		ArrayList<ResourceType> allResources = new ArrayList<ResourceType>();
@@ -181,7 +181,7 @@ public class Player implements IPlayer {
 
 		return allResources;
 	}
-	
+
 	/**
 	 * Gibt die Gewinnpunkte aufgrund der Coins an
 	 */
@@ -189,7 +189,7 @@ public class Player implements IPlayer {
 	public int evaluateVictoryCoin() {
 		int c = 0;
 		for (int x = 0; x < this.getCoinWallet().size(); x++) {
-			if (this.getCoinWallet().get(x) == ResourceType.Coin) {
+			if (this.getCoinWallet().get(x).equals(ResourceType.Coin)) {
 				c++;
 			}
 		}
@@ -202,15 +202,31 @@ public class Player implements IPlayer {
 	@Override
 	public int evaluateVictoryWonder() {
 		int w = 0;
-		for (int x = 0; x < this.getBoard().getBoardResource().size(); x++) {
-			if (this.getBoard().getBoardResource().get(x) == ResourceType.VictoryPoint) {
-				w++;
+		if (this.getBoard().getStepOneBuilt()) {
+			for (int x = 0; x < this.getBoard().getStepOneValue().size(); x++) {
+				if (this.getBoard().getStepOneValue().get(x) == ResourceType.VictoryPoint) {
+					w++;
+				}
 			}
 		}
-
+		if (this.getBoard().getStepTwoBuilt()) {
+			for (int x = 0; x < this.getBoard().getStepTwoValue().size(); x++) {
+				if (this.getBoard().getStepTwoValue().get(x) == ResourceType.VictoryPoint) {
+					w++;
+				}
+			}
+		}
+		if (this.getBoard().getStepThreeBuilt()) {
+			for (int x = 0; x < this.getBoard().getStepThreeValue().size(); x++) {
+				if (this.getBoard().getStepThreeValue().get(x) == ResourceType.VictoryPoint) {
+					w++;
+				}
+			}
+		}
 		return w;
 	}
-	
+
+	//Profanbauten machn wir nicht. Kann gelöscht werden!!!
 	/**
 	 * Gibt die Gewinnpunkte aufgrund gespielter PRofankarten an
 	 */
@@ -226,17 +242,15 @@ public class Player implements IPlayer {
 		return d;
 	}
 
-	
 	/**
 	 * Gibt die Gewinnpunkte aufgrund der Forschungsgebäude an
 	 */
 	@Override
-	
+
 	public int evaluateVictoryResearch() {
 		int r = 0, tafel = 0, zirkel = 0, zahnrad = 0;
-		
-		
-		// Zählen der verschiedenen Forschungssymbole
+
+		// Zaehlen der verschiedenen Forschungssymbole
 		for (int x = 0; x < this.getPlayerResources().size(); x++) {
 			switch (this.getPlayerResources().get(x)) {
 
@@ -251,49 +265,50 @@ public class Player implements IPlayer {
 			case Compasses:
 				zirkel++;
 				break;
+			
+			default: break;
 			}
 		}
-		
-		//Punkte berechnung für gleiche Symbole
-		ArrayList <Integer> temp = new ArrayList <Integer>();
+
+		// Punkte berechnung fuer gleiche Symbole
+		ArrayList<Integer> temp = new ArrayList<Integer>();
 		temp.add(0, tafel);
 		temp.add(1, zirkel);
 		temp.add(2, zahnrad);
-		for (int x = 0; x < temp.size(); x++)	{
-			
+		for (int x = 0; x < temp.size(); x++) {
+
 			switch (temp.get(x)) {
 
-			case 0: break;
+			case 0:
+				break;
 
 			case 1:
 				r++;
 				break;
 
 			case 2:
-				r=r+4;
+				r = r + 4;
 				break;
-				
+
 			case 3:
-				r=r+9;
+				r = r + 9;
 				break;
-				
+
 			case 4:
-				r=r+16;
+				r = r + 16;
 				break;
 			}
-			
+
 		}
-		
-		
-		//Punkteberechnung für Paket à 3verschiedenen Sympbolen
-		while (tafel != 0 && zirkel !=0  && zahnrad != 0) {
-			r++;
-			tafel --;
+
+		// Punkteberechnung für Paket an 3 verschiedenen Symbolen
+		while (tafel != 0 && zirkel != 0 && zahnrad != 0) {
+			r=r+7;
+			tafel--;
 			zirkel--;
 			zahnrad--;
 		}
-	
-				
+
 		return r;
 	}
 
@@ -309,12 +324,12 @@ public class Player implements IPlayer {
 		winPoints.put("Weltwunder", this.evaluateVictoryWonder());
 		winPoints.put("Profanbauten", this.evaluateVictoryDirect());
 		winPoints.put("Forschungsgebäude", this.evaluateVictoryResearch());
-		winPoints.put("TOTAL", (this.getMilitaryWarPoints()+this.evaluateVictoryCoin()+this.evaluateVictoryWonder()+this.evaluateVictoryDirect()+this.evaluateVictoryResearch()));
-	
+		winPoints.put("TOTAL", (this.getMilitaryWarPoints() + this.evaluateVictoryCoin() + this.evaluateVictoryWonder()
+				+ this.evaluateVictoryDirect() + this.evaluateVictoryResearch()));
 
 		return winPoints;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.nickname;
@@ -331,6 +346,5 @@ public class Player implements IPlayer {
 	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
 		this.coinWallet = coinWallet;
 	}
-	
-	
+
 }
