@@ -166,7 +166,7 @@ public class Board implements IBoard {
 
 	}
 
-	public ArrayList<ResourceType> getBoardResource() {
+	public ArrayList<ResourceType> getStepResource() {
 
 		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>();
 
@@ -192,6 +192,14 @@ public class Board implements IBoard {
 		}
 
 		return tempResources;
+	}
+
+	public ArrayList<ResourceType> getBoardResource() {
+		return boardResource;
+	}
+
+	public void setBoardResource(ArrayList<ResourceType> boardResource) {
+		this.boardResource = boardResource;
 	}
 
 }

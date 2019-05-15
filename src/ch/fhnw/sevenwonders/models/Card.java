@@ -6,7 +6,9 @@ import ch.fhnw.sevenwonders.enums.Age;
 import ch.fhnw.sevenwonders.enums.CardType;
 import ch.fhnw.sevenwonders.enums.ResourceType;
 import ch.fhnw.sevenwonders.enums.ValueCalculationType;
+import ch.fhnw.sevenwonders.interfaces.IBoard;
 import ch.fhnw.sevenwonders.interfaces.ICard;
+import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
@@ -65,73 +67,84 @@ public class Card implements ICard {
 	}
 
 	public ArrayList<ResourceType> getValue() {
-		return value;
+		return this.value;
 	}
 
-	// Überprüft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfügung
-	// stehenden Resourcen gedeckt werden können.
-	public boolean isPlayable(ArrayList<ICard> availableCards) {
-		ArrayList<ICard> tempCardsAnd = new ArrayList<ICard>(availableCards.size());
-		ArrayList<ICard> tempCardsOr = new ArrayList<ICard>(availableCards.size());
-		ArrayList<ICard> tempCardsNull = new ArrayList<ICard>(availableCards.size());
-		ArrayList<ResourceType> tempCardsAndValues = new ArrayList<ResourceType>();
-
-		for (ICard c : availableCards) {
-			if (c.getValueCalculationType() == ValueCalculationType.And) {
-				tempCardsAnd.add(c);
-			}
-			if (c.getValueCalculationType() == ValueCalculationType.Or) {
-				tempCardsOr.add(c);
-			}
-			if (c.getValueCalculationType() == null) {
-				tempCardsNull.add(c);
-			}
-		}
-		for (int c = 0; c < tempCardsAnd.size(); c++) {
-			for (ResourceType rt : tempCardsAnd.get(c).getValue()) {
-				tempCardsAndValues.add(rt);
-			}
-		}
-
-		int numResults = this.getCost().size();
+	/**
+	 * Ueberprüft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfuegung stehenden Resourcen gedeckt werden koennen.
+	 * @author Ismael
+	 */
+	public boolean isPlayable(IPlayer p) {
 		
-		if (numResults > 0) {
-			for (int i = 0; i < this.getCost().size(); i++) {
-				for (int m = 0; m < tempCardsNull.size(); m++) {
-					if (this.getCost().get(i).equals(tempCardsNull.get(m).getValue().get(0))) {
-						tempCardsNull.remove(m);
-						numResults--;
-					}
+		ArrayList<ResourceType> tempCardsAndValues = new ArrayList<ResourceType>();
+		ArrayList<ICard> tempCardsOr = new ArrayList<ICard>();
+		ArrayList<Boolean> costFound = new ArrayList<Boolean>();
+		boolean playable = false;
+		
+		
+		//alle Karten zuweisen
+		for (int x = 0; x < p.getCards().size(); x++) {
+			
+			if (p.getCards().get(x).getValueCalculationType()== ValueCalculationType.Or) {
+					tempCardsOr.add(p.getCards().get(x));
+			} else {
+					for(int y = 0; y < p.getCards().get(x).getValue().size(); y++) {
+						tempCardsAndValues.add(p.getCards().get(x).getValue().get(y));
+					}				
+			}
+			
+		}
+		
+		//alle Boardressourcen zuweisen
+		for(int x = 0; x < p.getBoard().getStepResource().size(); x++) {
+				tempCardsAndValues.add(p.getBoard().getStepResource().get(x));
+			}
+		tempCardsAndValues.addAll(p.getBoard().getBoardResource());
+			
+		//alle Coins zuweisen
+		
+		tempCardsAndValues.addAll(p.getCoinWallet());
+		
+		
+		
+		//Überpruefungsliste ob allle Ressourcen gedeckt werden konnten
+		for(int x = 0 ; x < this.cost.size(); x++){
+			costFound.add(false);
+		}
+		
+		//pruefen ob Resource vorhanden
+		for (int x = 0; x < this.cost.size(); x++) {
+			
+			for(int y = 0; y < tempCardsAndValues.size(); y++) { //FEHLER ER KOMMT NIE IN DIE SCHLAUFE
+				if(this.cost.get(x).equals(tempCardsAndValues.get(y))) { 
+					tempCardsAndValues.remove(y);
+					costFound.set(x, true);
+					break;
 				}
 			}
-		}
-		if (numResults > 0) {
-			for (int i = 0; i < this.getCost().size(); i++) {
-				for (int k = 0; k < tempCardsAndValues.size(); k++) {
-					if (this.getCost().get(i).equals(tempCardsAndValues.get(k))) {
-						tempCardsAndValues.remove(k);
-						numResults--;
-					}
-				}
-			}
-		}
-		if (numResults > 0) {
-			for (int i = 0; i < this.getCost().size(); i++) {
-				for (int j = 0; j < tempCardsOr.size(); j++) {
-					for (int l = 0; l < tempCardsOr.get(j).getValue().size(); l++) {
-						if (this.getCost().get(i).equals(tempCardsOr.get(j).getValue().get(l))) {
-							tempCardsOr.remove(j);
-							numResults--;
+			
+				
+			if (!costFound.get(x)){
+				for (int y = 0; y < tempCardsOr.size(); y++) {
+					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {//KOMMT NIE IN DIE SCHLAUFE
+						if (this.cost.get(x) == tempCardsOr.get(y).getValue().get(z)) { 
+							tempCardsOr.remove(y);
+							costFound.set(x, true);
+							break;
 						}
 					}
 				}
 			}
+			
 		}
-		if (numResults == 0) {
-			return true;
-		} else {
-			return false;
+		
+		
+		if (costFound.contains(false)) {
+			playable = false;
+		} else { playable = true;
 		}
+		
+		return playable;
 	}
 
 	public ValueCalculationType getValueCalculationType() {

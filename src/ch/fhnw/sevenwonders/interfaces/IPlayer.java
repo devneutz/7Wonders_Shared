@@ -71,5 +71,11 @@ public interface IPlayer extends Serializable {
 
 	// listet alle verfügbaren Ressourcen der gespielten Karten des Spielers
 	ArrayList<ResourceType> getCardResources();
+	
+	void setCoinWallet(ArrayList<ResourceType> coinWallet);
+	
+	void setBoard(IBoard board);
+	
+	void setCards(ArrayList<ICard> cards);
 
 }

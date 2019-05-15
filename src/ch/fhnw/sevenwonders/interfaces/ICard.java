@@ -26,7 +26,7 @@ public interface ICard extends Serializable {
 	ArrayList<ResourceType> getValue();
 	
 	// Kann die gewünschte Karte gespielt werden bzw. sind genügend Resourcen vorhanden? Dieser Wert ist ebenfalls in der Liste "ResourceType" gespeichert.
-	boolean isPlayable(ArrayList<ICard> array);
+	boolean isPlayable(IPlayer p);
 	
 	// Gibt einen Wert aus dem enum "ValueCalculationType" zurück. Dieser Wert entscheidet wie die Resource zu zählen ist.
 	ValueCalculationType getValueCalculationType();

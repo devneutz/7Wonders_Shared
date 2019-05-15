@@ -21,13 +21,15 @@ public class Player implements IPlayer {
 	private ArrayList<ICard> cards;
 	private ArrayList<ICard> CardStack;
 	private IBoard board;
-	
 	private ArrayList<ResourceType> coinWallet;
 
 	static final long serialVersionUID = 12L;
 	
 	public Player() {
 		this.coinWallet = new ArrayList<ResourceType>();
+		coinWallet.add(ResourceType.Coin);
+		coinWallet.add(ResourceType.Coin);
+		coinWallet.add(ResourceType.Coin);
 	}
 
 	@Override
@@ -60,8 +62,7 @@ public class Player implements IPlayer {
 	}
 
 	public void playCard(ICard card) {
-
-		if (card.isPlayable(getCards())) {
+		if (card.isPlayable(this)) {
 			
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i) == card) {
@@ -318,4 +319,18 @@ public class Player implements IPlayer {
 	public String toString() {
 		return this.nickname;
 	}
+
+	public void setCards(ArrayList<ICard> cards) {
+		this.cards = cards;
+	}
+
+	public void setBoard(IBoard board) {
+		this.board = board;
+	}
+
+	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
+		this.coinWallet = coinWallet;
+	}
+	
+	
 }

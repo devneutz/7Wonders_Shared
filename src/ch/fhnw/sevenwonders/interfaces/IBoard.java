@@ -34,5 +34,7 @@ public interface IBoard extends Serializable {
 	void setStepThreeBuilt(boolean isBuilt);
 
 	ArrayList<ResourceType> getBoardResource();
+	
+	ArrayList<ResourceType> getStepResource();
 
 }
