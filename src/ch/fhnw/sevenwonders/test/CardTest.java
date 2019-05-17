@@ -1,4 +1,4 @@
-package ch.fhnw.sevenwonders.models;
+package ch.fhnw.sevenwonders.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,6 +11,9 @@ import ch.fhnw.sevenwonders.enums.CardType;
 import ch.fhnw.sevenwonders.enums.ResourceType;
 import ch.fhnw.sevenwonders.enums.ValueCalculationType;
 import ch.fhnw.sevenwonders.interfaces.ICard;
+import ch.fhnw.sevenwonders.models.Board;
+import ch.fhnw.sevenwonders.models.Card;
+import ch.fhnw.sevenwonders.models.Player;
 
 class CardTest {
 	

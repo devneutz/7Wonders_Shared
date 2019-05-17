@@ -1,4 +1,4 @@
-package ch.fhnw.sevenwonders.models;
+package ch.fhnw.sevenwonders.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import ch.fhnw.sevenwonders.enums.ResourceType;
 import ch.fhnw.sevenwonders.interfaces.IBoard;
+import ch.fhnw.sevenwonders.models.Board;
+import ch.fhnw.sevenwonders.models.Player;
 
 class Test_Player {
 /*
