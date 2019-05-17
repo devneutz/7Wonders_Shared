@@ -38,8 +38,10 @@ public class Card implements ICard {
 		this.cardType = cardType;
 		this.usedStartingFrom = usedStartingFrom;
 		this.valueCalculationType = valueCalculationType;
-		this.value = value;
-		this.cost = cost;
+		this.value = new ArrayList<ResourceType>();
+		this.value.addAll(value);
+		this.cost = new ArrayList<ResourceType>();
+		this.cost.addAll(cost);
 		this.usedForPyramid = usedForPyramid;
 		this.imageName = imageName;
 		

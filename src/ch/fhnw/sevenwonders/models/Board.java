@@ -31,13 +31,20 @@ public class Board implements IBoard {
 			ArrayList<ResourceType> stepTwoCost, ArrayList<ResourceType> stepThreeValue,
 			ArrayList<ResourceType> stepThreeCost, String imageName) {
 		this.name = name;
-		this.boardResource = boardResource;
-		this.stepOneValue = stepOneValue;
-		this.stepOneCost = stepOneCost;
-		this.stepTwoValue = stepTwoValue;
-		this.stepTwoCost = stepTwoCost;
-		this.stepTwoValue = stepThreeValue;
-		this.stepTwoCost = stepThreeCost;
+		this.boardResource = new ArrayList<ResourceType>(); 
+		this.boardResource.addAll(boardResource);
+		this.stepOneValue = new ArrayList<ResourceType>();
+		this.stepOneValue.addAll(stepOneValue);
+		this.stepOneCost = new ArrayList<ResourceType>();
+		this.stepOneCost.addAll(stepOneCost);
+		this.stepTwoValue = new ArrayList<ResourceType>();
+		this.stepTwoValue.addAll(stepTwoValue);
+		this.stepTwoCost = new ArrayList<ResourceType>();
+		this.stepTwoCost.addAll(stepTwoCost);
+		this.stepTwoValue = new ArrayList<ResourceType>();
+		this.stepThreeValue.addAll(stepThreeValue);
+		this.stepTwoCost = new ArrayList<ResourceType>();
+		this.stepThreeCost.addAll(stepThreeCost);
 		this.imageName = imageName;
 	}
 
