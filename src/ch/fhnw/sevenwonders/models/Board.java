@@ -41,9 +41,9 @@ public class Board implements IBoard {
 		this.stepTwoValue.addAll(stepTwoValue);
 		this.stepTwoCost = new ArrayList<ResourceType>();
 		this.stepTwoCost.addAll(stepTwoCost);
-		this.stepTwoValue = new ArrayList<ResourceType>();
+		this.stepThreeValue = new ArrayList<ResourceType>();
 		this.stepThreeValue.addAll(stepThreeValue);
-		this.stepTwoCost = new ArrayList<ResourceType>();
+		this.stepThreeCost = new ArrayList<ResourceType>();
 		this.stepThreeCost.addAll(stepThreeCost);
 		this.imageName = imageName;
 	}
