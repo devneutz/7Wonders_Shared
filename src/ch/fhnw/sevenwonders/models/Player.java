@@ -43,9 +43,9 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Matteo Farneti
 	 * Ummuenzen der Karte, was dem Spieler 3 Coins bringt. Es findet keine Pruefung
-	 * statt, da dies immer funktionieren muss.
-	 * 
+	 * statt, da dies immer funktionieren muss.	 * 
 	 */
 	public void monetizeCard(ICard card) {
 
@@ -64,6 +64,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Matteo Farneti
 	 * Wenn die gewünschte Karte gespielt wird, muss sie auch aus dem Kartendeck
 	 * entfernt werden.
 	 */
@@ -79,6 +80,7 @@ public class Player implements IPlayer {
 		}
 	}
 	/**
+	 * @author Matteo Farneti
 	 * Karte wird für den nächstmöglichen Weltwunderstufen-Bau verwendet.
 	 */
 	public void useCardForBuilding(ICard card) {
@@ -225,7 +227,7 @@ public class Player implements IPlayer {
 
 	/**
 	 * @author Ismael
-	 * Gibt die Gewinnpunkte aufgrund gespielter PRofankarten an
+	 * Gibt die Gewinnpunkte aufgrund gespielter Profankarten an
 	 */
 	@Override
 	public int evaluateVictoryDirect() {
@@ -398,8 +400,8 @@ public class Player implements IPlayer {
 		}
 		
 		
-		//MilitaryWarPointssetzen
-		this.setMilitaryWarPoints(this.getMilitaryWarPoints() + result);
+		//MilitaryWarPoints setzen
+		this.militaryWarPoints = (this.militaryWarPoints + result);
 		
 		}
 	
