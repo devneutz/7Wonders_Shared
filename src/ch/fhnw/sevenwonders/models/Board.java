@@ -7,7 +7,7 @@ import ch.fhnw.sevenwonders.interfaces.IBoard;
 
 /**
  * 
- * @author Joel Neutzner, Ismael Liuzzi
+ * @author Joel Neutzner, Ismael Liuzzi, Matteo Farneti
  *
  */
 
