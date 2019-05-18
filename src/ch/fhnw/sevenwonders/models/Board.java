@@ -47,7 +47,11 @@ public class Board implements IBoard {
 		this.stepThreeCost.addAll(stepThreeCost);
 		this.imageName = imageName;
 	}
-
+	
+	/**
+	 * @author Matteo Farneti
+	 * Prüft, ob die Kosten mit den vorhanden Ressourcen gedeckt werden und somit gebaut werden kann.
+	 */
 	@Override
 	public Boolean canBuild(int inStep, ArrayList<ResourceType> inResources) {
 		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>(inResources.size());
@@ -121,7 +125,9 @@ public class Board implements IBoard {
 	public ArrayList<ResourceType> getStepThreeValue() {
 		return stepThreeValue;
 	}
-
+	/**
+	 * Gibt zurueck was der nächste Schritt für den Bau ist.
+	 */
 	public int getNextStageToBuild() {
 		if (!this.StepOneBuilt) {
 			return 1;
@@ -202,6 +208,7 @@ public class Board implements IBoard {
 	}
 	
 	/**
+	 * @author Matteo Farneti
 	 * Speichert die entsprechenden Werte der Weltwunderstufen in den Board Resourcen ab, wenn diese bereits bebaut wurden.
 	 */
 	public ArrayList<ResourceType> getBoardResource() {
