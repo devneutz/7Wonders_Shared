@@ -158,6 +158,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * gibt alle Ressourcen der gespielten Karten aus
 	 */
 	public ArrayList<ResourceType> getCardResources() {
@@ -171,6 +172,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * alle Ressourcen aus, die der Spieler zur Verfügung hat
 	 */
 	public ArrayList<ResourceType> getPlayerResources() {
@@ -183,6 +185,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * Gibt die Gewinnpunkte aufgrund der Coins an
 	 */
 	@Override
@@ -197,6 +200,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * Gibt die Gewinnpunkte aufgrund der Weltwunderbauten an
 	 */
 	@Override
@@ -228,6 +232,7 @@ public class Player implements IPlayer {
 
 	//Profanbauten machn wir nicht. Kann gelöscht werden!!!
 	/**
+	 * @author Ismael
 	 * Gibt die Gewinnpunkte aufgrund gespielter PRofankarten an
 	 */
 	@Override
@@ -243,6 +248,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * Gibt die Gewinnpunkte aufgrund der Forschungsgebäude an
 	 */
 	@Override
@@ -313,6 +319,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
+	 * @author Ismael
 	 * Gibt alle Siegpunkte eines Spielers zurück
 	 */
 	public HashMap<String, Integer> evaluate() {
@@ -346,5 +353,62 @@ public class Player implements IPlayer {
 	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
 		this.coinWallet = coinWallet;
 	}
-
+	
+	/**
+	 * @author Ismael
+	 * fuehrt den Militaerkampf fuer den aufgerufenen Spieler aus. Setzt seine MilitaryWarPoints dementsprechend
+	 */
+	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age) {
+		int thisM = 0, leftM = 0, rightM = 0, result = 0;
+		
+		//auslesen der Militaerstaerke von aufgerufenem Spieler
+		for (int x = 0; x < this.getPlayerResources().size(); x++) {
+			if (this.getPlayerResources().get(x) == ResourceType.MilitaryMight){
+				thisM++;
+			}
+		}
+		
+		//auslesen der Militaerstaerke von Spieler links
+		for (int x = 0; x < neighbourLeft.getPlayerResources().size(); x++) {
+			if (neighbourLeft.getPlayerResources().get(x) == ResourceType.MilitaryMight){
+				leftM++;
+			}
+		}
+		
+		//auslesen der Militaerstaerke von Spieler rechts
+		for (int x = 0; x < neighbourRight.getPlayerResources().size(); x++) {
+			if (neighbourRight.getPlayerResources().get(x) == ResourceType.MilitaryMight){
+				rightM++;
+			}
+		}
+		
+		
+		// Vergleichen der Staerken resp. Kampf mit links
+		if (thisM-leftM < 0) {
+			result--;
+		} else if (thisM-leftM > 0) {
+			if(age == Age.AgeI) {
+				result++;
+			} else {
+				result = result+3;
+			}
+		}
+		
+		//Vergleichen der Staerken resp Kampf mit rechts
+		if (thisM-rightM < 0) {
+			result--;
+		} else if (thisM-rightM > 0) {
+			if(age == Age.AgeI) {
+				result++;
+			} else {
+				result = result+3;
+			}
+		}
+		
+		
+		//MilitaryWarPointssetzen
+		this.setMilitaryWarPoints(this.getMilitaryWarPoints() + result);
+		
+		}
+	
 }

@@ -77,5 +77,7 @@ public interface IPlayer extends Serializable {
 	void setBoard(IBoard board);
 	
 	void setCards(ArrayList<ICard> cards);
+	
+	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age);
 
 }
