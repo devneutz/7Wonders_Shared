@@ -12,7 +12,7 @@ import ch.fhnw.sevenwonders.interfaces.IBoard;
 import ch.fhnw.sevenwonders.models.Board;
 import ch.fhnw.sevenwonders.models.Player;
 
-class Test_Player {
+class PlayerTest {
 /*
 	@Test
 	void testEvaluateVictoryCoin() {
