@@ -31,7 +31,7 @@ public class Board implements IBoard {
 			ArrayList<ResourceType> stepTwoCost, ArrayList<ResourceType> stepThreeValue,
 			ArrayList<ResourceType> stepThreeCost, String imageName) {
 		this.name = name;
-		this.boardResource = new ArrayList<ResourceType>(); 
+		this.boardResource = new ArrayList<ResourceType>();
 		this.boardResource.addAll(boardResource);
 		this.stepOneValue = new ArrayList<ResourceType>();
 		this.stepOneValue.addAll(stepOneValue);
@@ -200,8 +200,29 @@ public class Board implements IBoard {
 
 		return tempResources;
 	}
-
+	
+	/**
+	 * Speichert die entsprechenden Werte der Weltwunderstufen in den Board Resourcen ab, wenn diese bereits bebaut wurden.
+	 */
 	public ArrayList<ResourceType> getBoardResource() {
+		if (StepOneBuilt) {
+			for (int x = 0; x < getStepOneValue().size(); x++) {
+				boardResource.add(stepOneValue.get(x));
+			}
+		}
+
+		if (StepTwoBuilt) {
+			for (int x = 0; x < getStepTwoValue().size(); x++) {
+				boardResource.add(stepTwoValue.get(x));
+			}
+		}
+
+		if (StepThreeBuilt) {
+			for (int x = 0; x < getStepThreeValue().size(); x++) {
+				boardResource.add(stepThreeValue.get(x));
+			}
+		}
+
 		return boardResource;
 	}
 

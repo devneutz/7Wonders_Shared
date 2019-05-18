@@ -42,9 +42,10 @@ public class Player implements IPlayer {
 		return this.passwordHash;
 	}
 
-	/***
-	 * Zerstören der Karte, was in 3 Coins für den Spieler resultiert Es findet
-	 * keine Prüfung statt, da dies immer funktionieren muss.
+	/**
+	 * Ummuenzen der Karte, was dem Spieler 3 Coins bringt. Es findet keine Pruefung
+	 * statt, da dies immer funktionieren muss.
+	 * 
 	 */
 	public void monetizeCard(ICard card) {
 
@@ -53,6 +54,7 @@ public class Player implements IPlayer {
 		getCoinWallet().add(ResourceType.Coin);
 
 		for (int i = 0; i < CardStack.size(); i++) {
+
 			// Der Bildname ist immer eindeutig
 			if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 				getCards().remove(i);
@@ -61,6 +63,10 @@ public class Player implements IPlayer {
 		}
 	}
 
+	/**
+	 * Wenn die gewünschte Karte gespielt wird, muss sie auch aus dem Kartendeck
+	 * entfernt werden.
+	 */
 	public void playCard(ICard card) {
 		if (card.isPlayable(this)) {
 
@@ -72,7 +78,9 @@ public class Player implements IPlayer {
 			}
 		}
 	}
-
+	/**
+	 * Karte wird für den nächstmöglichen Weltwunderstufen-Bau verwendet.
+	 */
 	public void useCardForBuilding(ICard card) {
 
 		if (board.canBuild(board.getNextStageToBuild(), getPlayerResources())) {
@@ -202,33 +210,17 @@ public class Player implements IPlayer {
 	@Override
 	public int evaluateVictoryWonder() {
 		int w = 0;
-		if (this.getBoard().getStepOneBuilt()) {
-			for (int x = 0; x < this.getBoard().getStepOneValue().size(); x++) {
-				if (this.getBoard().getStepOneValue().get(x) == ResourceType.VictoryPoint) {
-					w++;
-				}
-			}
-		}
-		if (this.getBoard().getStepTwoBuilt()) {
-			for (int x = 0; x < this.getBoard().getStepTwoValue().size(); x++) {
-				if (this.getBoard().getStepTwoValue().get(x) == ResourceType.VictoryPoint) {
-					w++;
-				}
-			}
-		}
-		if (this.getBoard().getStepThreeBuilt()) {
-			for (int x = 0; x < this.getBoard().getStepThreeValue().size(); x++) {
-				if (this.getBoard().getStepThreeValue().get(x) == ResourceType.VictoryPoint) {
-					w++;
-				}
+
+		for (int i = 0; i < this.getBoard().getBoardResource().size(); i++) {
+			if (this.getBoard().getStepOneValue().get(i).equals(ResourceType.VictoryPoint)) {
+				w++;
 			}
 		}
 		return w;
 	}
 
-	//Profanbauten machn wir nicht. Kann gelöscht werden!!!
 	/**
-	 * Gibt die Gewinnpunkte aufgrund gespielter PRofankarten an
+	 * Gibt die Gewinnpunkte aufgrund gespielter Profankarten an.
 	 */
 	@Override
 	public int evaluateVictoryDirect() {
@@ -265,8 +257,9 @@ public class Player implements IPlayer {
 			case Compasses:
 				zirkel++;
 				break;
-			
-			default: break;
+
+			default:
+				break;
 			}
 		}
 
@@ -303,12 +296,11 @@ public class Player implements IPlayer {
 
 		// Punkteberechnung für Paket an 3 verschiedenen Symbolen
 		while (tafel != 0 && zirkel != 0 && zahnrad != 0) {
-			r=r+7;
+			r = r + 7;
 			tafel--;
 			zirkel--;
 			zahnrad--;
 		}
-
 		return r;
 	}
 
