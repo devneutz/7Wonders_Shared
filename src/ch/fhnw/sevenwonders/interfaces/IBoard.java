@@ -9,7 +9,7 @@ public interface IBoard extends Serializable {
 
 	// Methode zum Überprüfen, ob mit den angegebenen Ressourcen der Pyramidenteil
 	// gebaut werden kann
-	Boolean canBuild(int inStep, ArrayList<ResourceType> inResources);
+	Boolean canBuild(IPlayer p);
 
 	String getImageName();
 
@@ -32,6 +32,8 @@ public interface IBoard extends Serializable {
 	void setStepTwoBuilt(boolean isBuilt);
 
 	void setStepThreeBuilt(boolean isBuilt);
+	
+	void setBoardResource(ArrayList<ResourceType> boardResource);
 
 	ArrayList<ResourceType> getBoardResource();
 	

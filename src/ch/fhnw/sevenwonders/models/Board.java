@@ -3,7 +3,10 @@ package ch.fhnw.sevenwonders.models;
 import java.util.ArrayList;
 
 import ch.fhnw.sevenwonders.enums.ResourceType;
+import ch.fhnw.sevenwonders.enums.ValueCalculationType;
 import ch.fhnw.sevenwonders.interfaces.IBoard;
+import ch.fhnw.sevenwonders.interfaces.ICard;
+import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
@@ -53,58 +56,88 @@ public class Board implements IBoard {
 	 * Prüft, ob die Kosten mit den vorhanden Ressourcen gedeckt werden und somit gebaut werden kann.
 	 */
 	@Override
-	public Boolean canBuild(int inStep, ArrayList<ResourceType> inResources) {
-		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>(inResources.size());
-		for (ResourceType rt : inResources)
-			tempResources.add(rt);
-		boolean result = true;
-
-		// Überprüft, ob die Kosten (StepOneCost) im Step 1 mit den verfügbaren
-		// Resourcen (inResources) gedeckt werden können.
-		if (inStep == 1) {
-			for (int i = 0; i < stepOneCost.size(); i++) {
-				for (int j = 0; j < tempResources.size(); j++) {
-					if (tempResources.get(j).equals(stepOneCost.get(i))) {
-						tempResources.remove(j);
-						result = true;
-						break;
-					} else {
-						result = false;
+	public Boolean canBuild(IPlayer p) {
+		int inStep = this.getNextStageToBuild();
+		
+		ArrayList<ResourceType> tmpCost = new ArrayList<ResourceType>();
+		
+		switch (inStep) {
+		case 1: tmpCost.addAll(this.stepOneCost); break;
+		
+		case 2: tmpCost.addAll(this.stepTwoCost); break;
+		
+		case 3: tmpCost.addAll(this.stepThreeCost); break;
+		
+		}
+		
+		ArrayList<ResourceType> tempCardsAndValues = new ArrayList<ResourceType>();
+		ArrayList<ICard> tempCardsOr = new ArrayList<ICard>();
+		ArrayList<Boolean> costFound = new ArrayList<Boolean>();
+		boolean buildable = false;
+		
+		
+		//alle Karten zuweisen
+		for (int x = 0; x < p.getCards().size(); x++) {
+			
+			if (p.getCards().get(x).getValueCalculationType()== ValueCalculationType.Or) {
+					tempCardsOr.add(p.getCards().get(x));
+			} else {
+					for(int y = 0; y < p.getCards().get(x).getValue().size(); y++) {
+						tempCardsAndValues.add(p.getCards().get(x).getValue().get(y));
+					}				
+			}
+			
+		}
+		
+		//alle Boardressourcen zuweisen
+		tempCardsAndValues.addAll(this.getBoardResource());
+			
+		//alle Coins zuweisen
+		tempCardsAndValues.addAll(p.getCoinWallet());
+		
+		
+		
+		//Überpruefungsliste ob allle Ressourcen gedeckt werden konnten
+		for(int x = 0 ; x < tmpCost.size(); x++){
+			costFound.add(false);
+		}
+		
+		//pruefen ob Resource vorhanden
+		for (int x = 0; x < tmpCost.size(); x++) {
+			
+			for(int y = 0; y < tempCardsAndValues.size(); y++) {
+				if(tmpCost.get(x).equals(tempCardsAndValues.get(y))) { 
+					tempCardsAndValues.remove(y);
+					costFound.set(x, true);
+					break;
+				}
+			}
+			
+				
+			if (!costFound.get(x)){
+				for (int y = 0; y < tempCardsOr.size(); y++) {
+					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {
+						if (tmpCost.get(x) == tempCardsOr.get(y).getValue().get(z)) { 
+							tempCardsOr.remove(y);
+							costFound.set(x, true);
+							break;
+						}
 					}
 				}
 			}
+			
 		}
-		// Überprüft, ob die Kosten (StepTwoCost) im Step 2 mit den verfügbaren
-		// Resourcen (inResources) gedeckt werden können.
-		if (inStep == 2) {
-			for (int i = 0; i < stepTwoCost.size(); i++) {
-				for (int j = 0; j < tempResources.size(); j++) {
-					if (tempResources.get(j).equals(stepTwoCost.get(i))) {
-						tempResources.remove(j);
-						result = true;
-						break;
-					} else {
-						result = false;
-					}
-				}
-			}
+		
+		
+		if (costFound.contains(false)) {
+			buildable = false;
+		} else { buildable = true;
 		}
-		// Überprüft, ob die Kosten (StepThreeCost) im Step 3 mit den verfügbaren
-		// Resourcen (inResources) gedeckt werden können.
-		if (inStep == 3) {
-			for (int i = 0; i < stepThreeCost.size(); i++) {
-				for (int j = 0; j < tempResources.size(); j++) {
-					if (tempResources.get(j).equals(stepThreeCost.get(i))) {
-						tempResources.remove(j);
-						result = true;
-						break;
-					} else {
-						result = false;
-					}
-				}
-			}
-		}
-		return result;
+		
+		return buildable;
+		
+		
+		
 	}
 
 	@Override
@@ -208,33 +241,14 @@ public class Board implements IBoard {
 	}
 	
 	/**
-	 * @author Matteo Farneti
-	 * Speichert die entsprechenden Werte der Weltwunderstufen in den Board Resourcen ab, wenn diese bereits bebaut wurden.
+	 * Gibt alle Ressourcen des Boards aus
 	 */
 	public ArrayList<ResourceType> getBoardResource() {
-		if (StepOneBuilt) {
-			for (int x = 0; x < getStepOneValue().size(); x++) {
-				boardResource.add(stepOneValue.get(x));
-			}
-		}
-
-		if (StepTwoBuilt) {
-			for (int x = 0; x < getStepTwoValue().size(); x++) {
-				boardResource.add(stepTwoValue.get(x));
-			}
-		}
-
-		if (StepThreeBuilt) {
-			for (int x = 0; x < getStepThreeValue().size(); x++) {
-				boardResource.add(stepThreeValue.get(x));
-			}
-		}
-
 		return boardResource;
 	}
 
 	public void setBoardResource(ArrayList<ResourceType> boardResource) {
-		this.boardResource = boardResource;
+		this.boardResource.addAll(boardResource);
 	}
 
 }
