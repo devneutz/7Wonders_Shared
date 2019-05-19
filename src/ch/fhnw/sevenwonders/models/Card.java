@@ -12,7 +12,7 @@ import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
- * @author Matteo Farneti
+ * @author Matteo Farneti, Ismael Liuzzi
  *
  */
 

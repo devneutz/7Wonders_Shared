@@ -10,7 +10,7 @@ import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
- * @author Joel Neutzner, Ismael Liuzzi
+ * @author Joel Neutzner, Ismael Liuzzi, Matteo Farneti
  *
  */
 
@@ -50,7 +50,11 @@ public class Board implements IBoard {
 		this.stepThreeCost.addAll(stepThreeCost);
 		this.imageName = imageName;
 	}
-
+	
+	/**
+	 * @author Matteo Farneti
+	 * Prüft, ob die Kosten mit den vorhanden Ressourcen gedeckt werden und somit gebaut werden kann.
+	 */
 	@Override
 	public Boolean canBuild(IPlayer p) {
 		int inStep = this.getNextStageToBuild();
@@ -154,7 +158,9 @@ public class Board implements IBoard {
 	public ArrayList<ResourceType> getStepThreeValue() {
 		return stepThreeValue;
 	}
-
+	/**
+	 * Gibt zurueck was der nächste Schritt für den Bau ist.
+	 */
 	public int getNextStageToBuild() {
 		if (!this.StepOneBuilt) {
 			return 1;
