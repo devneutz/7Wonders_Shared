@@ -62,9 +62,9 @@ public class Player implements IPlayer {
 	 */
 	public void monetizeCard(ICard card) {
 
-		getCoinWallet().add(ResourceType.Coin);
-		getCoinWallet().add(ResourceType.Coin);
-		getCoinWallet().add(ResourceType.Coin);
+		addCoin();
+		addCoin();
+		addCoin();
 
 		for (int i = 0; i < CardStack.size(); i++) {
 			// Der Bildname ist immer eindeutig
@@ -183,6 +183,14 @@ public class Player implements IPlayer {
 		return coinWallet;
 	}
 
+	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
+		this.coinWallet = coinWallet;
+	}
+	
+	public void addCoin() {
+		this.coinWallet.add(ResourceType.Coin);
+	}
+
 	public int getMilitaryWarPoints() {
 		return militaryWarPoints;
 	}
@@ -222,10 +230,6 @@ public class Player implements IPlayer {
 		this.board = board;
 	}
 
-	public void setCoinWallet(ArrayList<ResourceType> coinWallet) {
-		this.coinWallet = coinWallet;
-	}
-	
 	/**
 	 * @author Ismael
 	 * fuehrt den Militaerkampf fuer den aufgerufenen Spieler aus. Setzt seine MilitaryWarPoints dementsprechend

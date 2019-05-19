@@ -3,6 +3,7 @@ package ch.fhnw.sevenwonders.interfaces;
 import ch.fhnw.sevenwonders.enums.*;
 import ch.fhnw.sevenwonders.models.Card;
 import ch.fhnw.sevenwonders.models.Player;
+import javafx.beans.property.IntegerProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
