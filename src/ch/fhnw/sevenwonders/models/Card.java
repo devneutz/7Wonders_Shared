@@ -101,13 +101,9 @@ public class Card implements ICard {
 		}
 		
 		//alle Boardressourcen zuweisen
-		for(int x = 0; x < p.getBoard().getStepResource().size(); x++) {
-				tempCardsAndValues.add(p.getBoard().getStepResource().get(x));
-			}
 		tempCardsAndValues.addAll(p.getBoard().getBoardResource());
 			
 		//alle Coins zuweisen
-		
 		tempCardsAndValues.addAll(p.getCoinWallet());
 		
 		
@@ -120,7 +116,7 @@ public class Card implements ICard {
 		//pruefen ob Resource vorhanden
 		for (int x = 0; x < this.cost.size(); x++) {
 			
-			for(int y = 0; y < tempCardsAndValues.size(); y++) { //FEHLER ER KOMMT NIE IN DIE SCHLAUFE
+			for(int y = 0; y < tempCardsAndValues.size(); y++) { 
 				if(this.cost.get(x).equals(tempCardsAndValues.get(y))) { 
 					tempCardsAndValues.remove(y);
 					costFound.set(x, true);
@@ -131,7 +127,7 @@ public class Card implements ICard {
 				
 			if (!costFound.get(x)){
 				for (int y = 0; y < tempCardsOr.size(); y++) {
-					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {//KOMMT NIE IN DIE SCHLAUFE
+					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {
 						if (this.cost.get(x) == tempCardsOr.get(y).getValue().get(z)) { 
 							tempCardsOr.remove(y);
 							costFound.set(x, true);

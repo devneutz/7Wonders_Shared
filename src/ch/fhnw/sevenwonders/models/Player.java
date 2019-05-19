@@ -57,51 +57,54 @@ public class Player implements IPlayer {
 
 			// Der Bildname ist immer eindeutig
 			if (CardStack.get(i).getImageName().equals(card.getImageName())) {
-				getCards().remove(i);
+				this.CardStack.remove(i);
 				break;
 			}
 		}
 	}
 
 	/**
-	 * Wenn die gewünschte Karte gespielt wird, muss sie auch aus dem Kartendeck
+	 * Wenn die gewuenschte Karte gespielt wird, muss sie auch aus dem Kartendeck
 	 * entfernt werden.
 	 */
 	public void playCard(ICard card) {
 		if (card.isPlayable(this)) {
 
-			for (int i = 0; i < CardStack.size(); i++) {
+			for (int i = 0; i < this.CardStack.size(); i++) {
 				if (CardStack.get(i) == card) {
 					getCards().remove(i);
+					this.cards.add(card);
 					break;
 				}
 			}
 		}
 	}
 	/**
-	 * Karte wird für den nächstmöglichen Weltwunderstufen-Bau verwendet.
+	 * Karte wird für den naechstmoeglichen Weltwunderstufen-Bau verwendet.
 	 */
 	public void useCardForBuilding(ICard card) {
-
-		if (board.canBuild(board.getNextStageToBuild(), getPlayerResources())) {
-
-			int nextStage = board.getNextStageToBuild();
-			if (nextStage == 1) {
-				board.setStepOneBuilt(true);
-				getPlayerResources().addAll(board.getStepOneValue());
+	
+		if (this.board.canBuild(this)) {
+			
+			switch(this.board.getNextStageToBuild()) {
+			
+			case 1: board.setStepOneBuilt(true);
+					this.board.setBoardResource(this.board.getStepOneValue());
+					break;
+				
+			case 2: board.setStepTwoBuilt(true);
+					this.board.setBoardResource(this.board.getStepTwoValue());
+					break;
+			
+			case 3: board.setStepThreeBuilt(true);
+					this.board.setBoardResource(this.board.getStepThreeValue());
+					break;
 			}
-			if (nextStage == 2) {
-				board.setStepTwoBuilt(true);
-				getPlayerResources().addAll(board.getStepTwoValue());
-			}
-			if (nextStage == 3) {
-				board.setStepThreeBuilt(true);
-				getPlayerResources().addAll(board.getStepThreeValue());
-			}
-
+			
+			
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i) == card) {
-					getCards().remove(i);
+					CardStack.remove(i);
 					break;
 				}
 			}
@@ -181,7 +184,7 @@ public class Player implements IPlayer {
 
 	/**
 	 * @author Ismael
-	 * alle Ressourcen aus, die der Spieler zur Verfügung hat
+	 * alle Ressourcen aus, die der Spieler zur Verfuegung hat (ohne Beachtung OR and AND Karten)
 	 */
 	public ArrayList<ResourceType> getPlayerResources() {
 		ArrayList<ResourceType> allResources = new ArrayList<ResourceType>();
