@@ -67,7 +67,6 @@ public class Player implements IPlayer {
 		getCoinWallet().add(ResourceType.Coin);
 
 		for (int i = 0; i < CardStack.size(); i++) {
-
 			// Der Bildname ist immer eindeutig
 			if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 				this.CardStack.remove(i);
@@ -83,7 +82,6 @@ public class Player implements IPlayer {
 	 */
 	public void playCard(ICard card) {
 		if (card.isPlayable(this)) {
-
 			for (int i = 0; i < this.CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 					CardStack.remove(i);
