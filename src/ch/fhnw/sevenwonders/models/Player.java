@@ -22,6 +22,8 @@ public class Player implements IPlayer {
 	private ArrayList<ICard> CardStack;
 	private IBoard board;
 	private ArrayList<ResourceType> coinWallet;
+	
+	private boolean hasPlayedCard;
 
 	static final long serialVersionUID = 12L;
 
@@ -43,6 +45,14 @@ public class Player implements IPlayer {
 	@Override
 	public String getPassword() {
 		return this.passwordHash;
+	}
+	
+	public boolean getHasPlayedCard() {
+		return this.hasPlayedCard;
+	}
+	
+	public void setHasPlayedCard(boolean inVal) {
+		this.hasPlayedCard = inVal;
 	}
 
 	/**
@@ -75,12 +85,13 @@ public class Player implements IPlayer {
 		if (card.isPlayable(this)) {
 
 			for (int i = 0; i < this.CardStack.size(); i++) {
-				if (CardStack.get(i) == card) {
-					getCards().remove(i);
+				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
+					CardStack.remove(i);
 					this.cards.add(card);
 					break;
 				}
 			}
+			
 		}
 	}
 	/**
@@ -120,6 +131,7 @@ public class Player implements IPlayer {
 	}
 
 	public void setCards(ArrayList<ICard> cards) {
+		this.cards.clear();
 		this.cards.addAll(cards);
 	}
 
@@ -138,6 +150,7 @@ public class Player implements IPlayer {
 	}
 	
 	public void setCardStack(ArrayList<ICard> inCards) {
+		this.CardStack.clear();
 		this.CardStack.addAll(inCards);
 	}
 

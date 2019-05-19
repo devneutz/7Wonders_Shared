@@ -81,5 +81,9 @@ public interface IPlayer extends Serializable {
 	void setCards(ArrayList<ICard> cards);
 	
 	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age);
+	
+	void setHasPlayedCard(boolean inVal);
+	 
+	boolean getHasPlayedCard();
 
 }

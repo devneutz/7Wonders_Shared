@@ -1,6 +1,9 @@
 package ch.fhnw.sevenwonders.messages;
 
+import ch.fhnw.sevenwonders.enums.GameAction;
 import ch.fhnw.sevenwonders.enums.StatusCode;
+import ch.fhnw.sevenwonders.interfaces.IBoard;
+import ch.fhnw.sevenwonders.interfaces.ICard;
 import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 public class ServerGameMessage extends Message {
@@ -12,7 +15,13 @@ public class ServerGameMessage extends Message {
 	private IPlayer player;
 	private StatusCode statusCode;
 
-	public ServerGameMessage() {	}
+	private GameAction action;
+	private ICard card;
+	private IBoard board;
+	
+	public ServerGameMessage(GameAction inAction) {
+		this.action = inAction;
+	}
 
 	@Override
 	public void setPlayer(IPlayer inPlayer) {
@@ -29,6 +38,30 @@ public class ServerGameMessage extends Message {
 
 	public void setStatusCode(StatusCode statusCode) {
 		this.statusCode = statusCode;
+	}
+	
+	public GameAction getAction() {
+		return action;
+	}
+
+	public void setAction(GameAction action) {
+		this.action = action;
+	}
+	
+	public ICard getCard() {
+		return card;
+	}
+
+	public void setCard(ICard card) {
+		this.card = card;
+	}
+
+	public IBoard getBoard() {
+		return board;
+	}
+
+	public void setBoard(IBoard board) {
+		this.board = board;
 	}
 
 }
