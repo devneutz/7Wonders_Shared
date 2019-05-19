@@ -26,7 +26,9 @@ public interface IPlayer extends Serializable {
 	String getName();
 
 	ArrayList<ICard> getCardStack();
-
+	
+	void setCardStack(ArrayList<ICard> inStack);
+	
 	// provisorisch erstellt --> evtl. nicht benötigt
 	ArrayList<ICard> getCards();
 
