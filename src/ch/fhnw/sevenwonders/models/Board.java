@@ -49,6 +49,9 @@ public class Board implements IBoard {
 		this.stepThreeCost = new ArrayList<ResourceType>();
 		this.stepThreeCost.addAll(stepThreeCost);
 		this.imageName = imageName;
+		this.StepOneBuilt = false;
+		this.StepTwoBuilt = false;
+		this.StepThreeBuilt = false;
 	}
 	
 	/**
@@ -212,33 +215,6 @@ public class Board implements IBoard {
 
 	}
 
-	public ArrayList<ResourceType> getStepResource() {
-
-		ArrayList<ResourceType> tempResources = new ArrayList<ResourceType>();
-
-		if (this.getStepOneBuilt() == true) {
-			for (int x = 0; x < this.getStepOneValue().size(); x++) {
-				tempResources.add(this.getStepOneValue().get(x));
-			}
-
-		}
-
-		if (this.getStepTwoBuilt() == true) {
-			for (int x = 0; x < this.getStepTwoValue().size(); x++) {
-				tempResources.add(this.getStepTwoValue().get(x));
-			}
-
-		}
-
-		if (this.getStepThreeBuilt() == true) {
-			for (int x = 0; x < this.getStepThreeValue().size(); x++) {
-				tempResources.add(this.getStepThreeValue().get(x));
-			}
-
-		}
-
-		return tempResources;
-	}
 	
 	/**
 	 * Gibt alle Ressourcen des Boards aus
@@ -247,7 +223,7 @@ public class Board implements IBoard {
 		return boardResource;
 	}
 
-	public void setBoardResource(ArrayList<ResourceType> boardResource) {
+	public void addBoardResource(ArrayList<ResourceType> boardResource) {
 		this.boardResource.addAll(boardResource);
 	}
 

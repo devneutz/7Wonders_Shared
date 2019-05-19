@@ -33,10 +33,8 @@ public interface IBoard extends Serializable {
 
 	void setStepThreeBuilt(boolean isBuilt);
 	
-	void setBoardResource(ArrayList<ResourceType> boardResource);
+	void addBoardResource(ArrayList<ResourceType> boardResource);
 
 	ArrayList<ResourceType> getBoardResource();
-	
-	ArrayList<ResourceType> getStepResource();
 
 }
