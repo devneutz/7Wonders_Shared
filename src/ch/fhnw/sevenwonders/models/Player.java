@@ -76,7 +76,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-
+	 *
 	 * Wenn die gewuenschte Karte gespielt wird, muss sie auch aus dem Kartendeck
 	 * entfernt werden.
 	 */
@@ -407,7 +407,7 @@ public class Player implements IPlayer {
 
 	/**
 	 * @author Ismael
-	 * Gibt alle Siegpunkte eines Spielers zurück
+	 * Gibt alle Siegpunkte eines Spielers zurueck
 	 */
 	public HashMap<String, Integer> evaluate() {
 	
