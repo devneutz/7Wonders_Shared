@@ -84,7 +84,8 @@ public class Player implements IPlayer {
 		if (card.isPlayable(this)) {
 			for (int i = 0; i < this.CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
-					CardStack.remove(i);
+					this.CardStack.remove(i);
+					// wenn Münzen dann add coin und löschen der Ressource auf karte @Ismael
 					this.cards.add(card);
 					break;
 				}
@@ -102,22 +103,22 @@ public class Player implements IPlayer {
 			switch(this.board.getNextStageToBuild()) {
 			
 			case 1: board.setStepOneBuilt(true);
-					this.board.setBoardResource(this.board.getStepOneValue());
+					this.board.addBoardResource(this.board.getStepOneValue());
 					break;
 				
 			case 2: board.setStepTwoBuilt(true);
-					this.board.setBoardResource(this.board.getStepTwoValue());
+					this.board.addBoardResource(this.board.getStepTwoValue());
 					break;
 			
 			case 3: board.setStepThreeBuilt(true);
-					this.board.setBoardResource(this.board.getStepThreeValue());
+					this.board.addBoardResource(this.board.getStepThreeValue());
 					break;
 			}
 			
 			
 			for (int i = 0; i < CardStack.size(); i++) {
-				if (CardStack.get(i) == card) {
-					CardStack.remove(i);
+				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
+					this.CardStack.remove(i);
 					break;
 				}
 			}
