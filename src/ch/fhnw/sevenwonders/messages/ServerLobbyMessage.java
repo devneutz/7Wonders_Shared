@@ -17,9 +17,20 @@ public class ServerLobbyMessage extends Message {
 	private ILobby lobby;
 	private StatusCode statusCode;
 	
+	private ArrayList<IPlayer> opponents;
+	
+	public ArrayList<IPlayer> getOpponents(){
+		return this.opponents;
+	}
+	
+	public void setOpponents(ArrayList<IPlayer> inOpponents) {
+		opponents.clear();
+		this.opponents.addAll(inOpponents);
+	}
 	
 	public ServerLobbyMessage(LobbyAction inAction) {
 		this.action = inAction;
+		this.opponents = new ArrayList<IPlayer>();
 	}	
 	
 	@Override

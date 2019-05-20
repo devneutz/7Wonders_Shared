@@ -1,5 +1,7 @@
 package ch.fhnw.sevenwonders.messages;
 
+import java.util.ArrayList;
+
 import ch.fhnw.sevenwonders.enums.GameAction;
 import ch.fhnw.sevenwonders.enums.StatusCode;
 import ch.fhnw.sevenwonders.interfaces.IBoard;
@@ -19,8 +21,20 @@ public class ServerGameMessage extends Message {
 	private ICard card;
 	private IBoard board;
 	
+	private ArrayList<IPlayer> opponents;
+	
 	public ServerGameMessage(GameAction inAction) {
 		this.action = inAction;
+		this.opponents = new ArrayList<IPlayer>();
+	}
+	
+	public ArrayList<IPlayer> getOpponents(){
+		return this.opponents;
+	}
+	
+	public void setOpponents(ArrayList<IPlayer> inOpponents) {
+		opponents.clear();
+		this.opponents.addAll(inOpponents);
 	}
 
 	@Override
