@@ -34,5 +34,9 @@ public interface ICard extends Serializable {
 	
 	// Gibt den Namen der entsprechenden Resource zurück
 	String getImageName();
+	
+	//Coins von Karte zestören
+	int destroyCoins ();
+	
 
 }

@@ -155,4 +155,16 @@ public class Card implements ICard {
 	public String getImageName() {
 		return imageName;
 	}
+	
+	public int destroyCoins() {
+		int destroyed = 0;
+		for (int x = 0; x < this.value.size(); x++) {
+			if (this.value.get(x)== ResourceType.Coin) {
+				this.value.remove(x);
+				x--;
+				destroyed++;
+			}
+		}
+		return destroyed;
+	}
 }

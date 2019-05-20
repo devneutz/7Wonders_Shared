@@ -18,6 +18,7 @@ public class Player implements IPlayer {
 	private String nickname;
 	private ILobby lobby;
 	private int militaryWarPoints = 0;
+	private int militaryPoints = 0;
 	private ArrayList<ICard> cards;
 	private ArrayList<ICard> CardStack;
 	private IBoard board;
@@ -85,12 +86,31 @@ public class Player implements IPlayer {
 			for (int i = 0; i < this.CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 					this.CardStack.remove(i);
-					// wenn Münzen dann add coin und löschen der Ressource auf karte @Ismael
+					
+					//Falls die gespielte Kart Muenzen als Value hat
+					this.addCoins(card.destroyCoins());
+					
+					//Wenn Karte Coins zum spielen benoetigt
+					for (int x = 0; x < card.getCost().size(); x++) {
+						if (card.getCost().get(x)==ResourceType.Coin) {
+							this.payByCoins(1);
+						}
+					}
+					
+					// MilitaryPoints raufzaehlen
+					for (int x = 0; x < card.getValue().size(); x++) {
+						if (card.getValue().get(x)==ResourceType.MilitaryMight){
+							this.addMilitaryPoint();
+						}
+					}
+					
 					this.cards.add(card);
+								
+						
 					break;
+				
 				}
-			}
-			
+			}	
 		}
 	}
 	/**
@@ -115,6 +135,8 @@ public class Player implements IPlayer {
 					break;
 			}
 			
+			// wenn Münzen als vlaue dann add coin und löschen der Ressource auf karte @Ismael wird noch erledigt
+			// MilitaryPoints raufzählen @Ismael wird noch erledigt
 			
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
@@ -191,13 +213,43 @@ public class Player implements IPlayer {
 	public void addCoin() {
 		this.coinWallet.add(ResourceType.Coin);
 	}
+	
+	public void addCoins(int amount) {
+		for (int x = 0; x < amount; x++) {
+			this.coinWallet.add(ResourceType.Coin);
+		}
+	}
+	
+	public void payByCoins(int amount) {
+		for (int x = 0; x < amount; x++) {
+			this.coinWallet.remove(this.coinWallet.size()-1);
+		}
+		
+	}
+		
 
 	public int getMilitaryWarPoints() {
 		return militaryWarPoints;
 	}
 
+	public void addMilitaryWarPoints(int addValue) {
+		this.militaryWarPoints += addValue;
+	}
+	
 	public void setMilitaryWarPoints(int militaryWarPoints) {
-		this.militaryWarPoints += militaryWarPoints;
+		this.militaryWarPoints = militaryWarPoints;
+	}
+	
+	public int getMilitaryPoints() {
+		return militaryPoints;
+	}
+	
+	public void setMilitaryPoints(int militaryPoints) {
+		this.militaryPoints = militaryPoints;
+	}
+	
+	public void addMilitaryPoint() {
+		this.militaryPoints ++;
 	}
 
 	/**
@@ -236,28 +288,9 @@ public class Player implements IPlayer {
 	 * fuehrt den Militaerkampf fuer den aufgerufenen Spieler aus. Setzt seine MilitaryWarPoints dementsprechend
 	 */
 	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age) {
-		int thisM = 0, leftM = 0, rightM = 0, result = 0;
+		int thisM = this.militaryPoints, leftM = neighbourLeft.getMilitaryPoints(), rightM = neighbourRight.getMilitaryPoints(), result = 0;
 		
-		//auslesen der Militaerstaerke von aufgerufenem Spieler
-		for (int x = 0; x < this.getPlayerResources().size(); x++) {
-			if (this.getPlayerResources().get(x) == ResourceType.MilitaryMight){
-				thisM++;
-			}
-		}
-		
-		//auslesen der Militaerstaerke von Spieler links
-		for (int x = 0; x < neighbourLeft.getPlayerResources().size(); x++) {
-			if (neighbourLeft.getPlayerResources().get(x) == ResourceType.MilitaryMight){
-				leftM++;
-			}
-		}
-		
-		//auslesen der Militaerstaerke von Spieler rechts
-		for (int x = 0; x < neighbourRight.getPlayerResources().size(); x++) {
-			if (neighbourRight.getPlayerResources().get(x) == ResourceType.MilitaryMight){
-				rightM++;
-			}
-		}
+	
 		
 		
 		// Vergleichen der Staerken resp. Kampf mit links
@@ -267,7 +300,7 @@ public class Player implements IPlayer {
 			if(age == Age.AgeI) {
 				result++;
 			} else {
-				result = result+3;
+				result += 3;
 			}
 		}
 		
@@ -278,7 +311,7 @@ public class Player implements IPlayer {
 			if(age == Age.AgeI) {
 				result++;
 			} else {
-				result = result+3;
+				result += 3;
 			}
 		}
 		

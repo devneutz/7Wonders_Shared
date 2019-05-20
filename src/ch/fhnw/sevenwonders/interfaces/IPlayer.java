@@ -49,7 +49,9 @@ public interface IPlayer extends Serializable {
 	int getMilitaryWarPoints();
 
 	void setMilitaryWarPoints(int militaryWarPoints);
-
+	
+	void addMilitaryWarPoints(int addValue);
+	
 	ArrayList<ResourceType> getCoinWallet();
 
 	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren
@@ -81,10 +83,21 @@ public interface IPlayer extends Serializable {
 	
 	void setCards(ArrayList<ICard> cards);
 	
-	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age);
+	void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age);
 	
 	void setHasPlayedCard(boolean inVal);
 	 
 	boolean getHasPlayedCard();
+	
+	int getMilitaryPoints();
+
+	void addMilitaryPoint();
+	
+	void setMilitaryPoints(int militaryPoints);
+	
+	void addCoins(int amount);
+	
+	void payByCoins(int amount);
+	
 
 }
