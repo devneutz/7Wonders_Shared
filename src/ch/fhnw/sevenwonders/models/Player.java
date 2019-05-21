@@ -77,7 +77,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 *
+	 *@author Ismael
 	 * Wenn die gewuenschte Karte gespielt wird, muss sie auch aus dem Kartendeck
 	 * entfernt werden.
 	 */
@@ -114,29 +114,47 @@ public class Player implements IPlayer {
 		}
 	}
 	/**
+	 * @author Ismael
 	 * Karte wird für den naechstmoeglichen Weltwunderstufen-Bau verwendet.
 	 */
 	public void useCardForBuilding(ICard card) {
 	
 		if (this.board.canBuild(this)) {
-			
+			int built = 0;
 			switch(this.board.getNextStageToBuild()) {
 			
 			case 1: board.setStepOneBuilt(true);
 					this.board.addBoardResource(this.board.getStepOneValue());
+					for (int x = 0; x < this.board.getStepOneValue().size(); x++) {
+						if (this.board.getStepOneValue().get(x)==ResourceType.MilitaryMight){
+							this.addMilitaryPoint();
+						}
+					}
 					break;
 				
 			case 2: board.setStepTwoBuilt(true);
 					this.board.addBoardResource(this.board.getStepTwoValue());
+					for (int x = 0; x < this.board.getStepTwoValue().size(); x++) {
+						if (this.board.getStepTwoValue().get(x)==ResourceType.MilitaryMight){
+							this.addMilitaryPoint();
+						}
+					}
 					break;
 			
 			case 3: board.setStepThreeBuilt(true);
 					this.board.addBoardResource(this.board.getStepThreeValue());
+					for (int x = 0; x < this.board.getStepThreeValue().size(); x++) {
+						if (this.board.getStepThreeValue().get(x)==ResourceType.MilitaryMight){
+							this.addMilitaryPoint();
+						}
+					}
 					break;
+					
 			}
 			
-			// wenn Münzen als vlaue dann add coin und löschen der Ressource auf karte @Ismael wird noch erledigt
-			// MilitaryPoints raufzählen @Ismael wird noch erledigt
+			//Falls das gebaute Weltwunder Muenzen als Value gibt
+			this.addCoins(board.destroyCoins());
+			
 			
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
@@ -179,11 +197,24 @@ public class Player implements IPlayer {
 	public IBoard getBoard() {
 		return board;
 	}
-
-	@Override
+	
+	/**
+	 * @author Ismael
+	 */
 	public int compareTo(IPlayer player) {
-		// TODO Auto-generated method stub
-		return 0;
+		int comp = (this.evaluate().get("TOTAL") - player.evaluate().get("TOTAL"));
+		
+		if (comp > 0) {
+			return 1;
+		}
+		
+		else if (comp < 0) {
+			return -1;
+		}
+		
+		else {
+			return 0;
+		}
 	}
 
 	@Override
