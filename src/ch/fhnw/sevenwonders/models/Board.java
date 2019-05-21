@@ -226,5 +226,20 @@ public class Board implements IBoard {
 	public void addBoardResource(ArrayList<ResourceType> boardResource) {
 		this.boardResource.addAll(boardResource);
 	}
+	
+	/**
+	 * @author Ismael
+	 */
+	public int destroyCoins() {
+		int destroyed = 0;
+		for (int x = 0; x < this.boardResource.size(); x++) {
+			if (this.boardResource.get(x)== ResourceType.Coin) {
+				this.boardResource.remove(x);
+				x--;
+				destroyed++;
+			}
+		}
+		return destroyed;
+	}
 
 }
