@@ -20,6 +20,9 @@ public interface ICard extends Serializable {
 	// Wird die Karte zum Bau des Weltwunders verwendet?
 	boolean getUsedForPyramid();
 	
+	// Fuer welche Spieleranzahl kann die Karte verwendet werden?
+	int getUsedStartingFrom();
+	
 	// Gibt die Kosten einer bestimmten Karte zurück, welche in der Liste "ResourceType" gespeichert ist.
 	ArrayList<ResourceType> getCost();
 	
