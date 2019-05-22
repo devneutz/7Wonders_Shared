@@ -137,10 +137,7 @@ public class Board implements IBoard {
 		} else { buildable = true;
 		}
 		
-		return buildable;
-		
-		
-		
+		return buildable;		
 	}
 
 	@Override
