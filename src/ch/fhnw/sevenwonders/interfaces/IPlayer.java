@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface IPlayer extends Serializable {
+public interface IPlayer extends Serializable, Comparable {
 
 	// Ist der Benutzer authentifiziert? Sprich nach erfolgreichem Login der Fall
 	boolean getIsAuthenticated();
@@ -53,10 +53,6 @@ public interface IPlayer extends Serializable {
 	void addMilitaryWarPoints(int addValue);
 	
 	ArrayList<ResourceType> getCoinWallet();
-
-	// Methode zum Vergleichen der Spieler in einem Spiel um zu identifizieren
-	// welcher Spieler gewonnen hat
-	int compareTo(IPlayer player);
 
 	// finale Punktzahlberrechnung
 	HashMap<String, Integer> evaluate();

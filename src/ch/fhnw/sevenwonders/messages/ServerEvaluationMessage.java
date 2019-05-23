@@ -37,8 +37,7 @@ public class ServerEvaluationMessage extends Message {
 
 	@Override
 	public void setPlayer(IPlayer inPlayer) {
-		// TODO Auto-generated method stub
-		
+		this.player = inPlayer;		
 	}
 
 	public StatusCode getStatusCode() {

@@ -321,9 +321,6 @@ public class Player implements IPlayer {
 	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age) {
 		int thisM = this.militaryPoints, leftM = neighbourLeft.getMilitaryPoints(), rightM = neighbourRight.getMilitaryPoints(), result = 0;
 		
-	
-		
-		
 		// Vergleichen der Staerken resp. Kampf mit links
 		if (thisM-leftM < 0) {
 			result--;
@@ -492,6 +489,12 @@ public class Player implements IPlayer {
 	@Override
 	public String toString() {
 		return this.nickname;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return compareTo((IPlayer)o);
 	}
 	
 }
