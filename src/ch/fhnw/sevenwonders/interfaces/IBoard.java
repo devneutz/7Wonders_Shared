@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import ch.fhnw.sevenwonders.enums.*;
 
-public interface IBoard extends Serializable {
+public interface IBoard extends Serializable, Cloneable {
 
 	// Methode zum Überprüfen, ob mit den angegebenen Ressourcen der Pyramidenteil
 	// gebaut werden kann
