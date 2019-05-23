@@ -120,7 +120,6 @@ public class Player implements IPlayer {
 	public void useCardForBuilding(ICard card) {
 	
 		if (this.board.canBuild(this)) {
-			int built = 0;
 			switch(this.board.getNextStageToBuild()) {
 			
 			case 1: board.setStepOneBuilt(true);
