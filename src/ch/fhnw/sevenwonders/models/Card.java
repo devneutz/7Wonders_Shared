@@ -86,6 +86,9 @@ public class Card implements ICard {
 		ArrayList<Boolean> costFound = new ArrayList<Boolean>();
 		boolean playable = false;
 		
+		if (this.getCardType() == CardType.CommercialStructures) {
+			return false;
+		}
 		
 		//alle Karten zuweisen
 		for (int x = 0; x < p.getCards().size(); x++) {

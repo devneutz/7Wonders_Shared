@@ -120,7 +120,7 @@ public class Board implements IBoard {
 			if (!costFound.get(x)){
 				for (int y = 0; y < tempCardsOr.size(); y++) {
 					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {
-						if (tmpCost.get(x) == tempCardsOr.get(y).getValue().get(z)) { 
+						if (tmpCost.get(x).equals(tempCardsOr.get(y).getValue().get(z))) { 
 							tempCardsOr.remove(y);
 							costFound.set(x, true);
 							break;
