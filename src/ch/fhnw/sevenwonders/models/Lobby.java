@@ -55,7 +55,7 @@ public class Lobby implements ILobby {
 	
 	@Override
 	public String toString() {
-		return lobbyName;
+		return numPlayers + " Spieler - " + lobbyName;
 	}
 
 	public ArrayList<IPlayer> getLobbyPlayers() {
