@@ -60,11 +60,10 @@ public class Board implements IBoard {
 	 */
 	@Override
 	public Boolean canBuild(IPlayer p) {
-		int inStep = this.getNextStageToBuild();
 		
 		ArrayList<ResourceType> tmpCost = new ArrayList<ResourceType>();
 		
-		switch (inStep) {
+		switch (this.getNextStageToBuild()) {
 		case 1: tmpCost.addAll(this.stepOneCost); break;
 		
 		case 2: tmpCost.addAll(this.stepTwoCost); break;
@@ -170,11 +169,11 @@ public class Board implements IBoard {
 			return 1;
 		}
 
-		if (!this.StepTwoBuilt) {
+		else if (!this.StepTwoBuilt) {
 			return 2;
 		}
 
-		if (!this.StepThreeBuilt) {
+		else if (!this.StepThreeBuilt) {
 			return 3;
 		}
 		return 0;
