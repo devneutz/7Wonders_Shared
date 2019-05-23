@@ -24,4 +24,5 @@ public interface ILobby extends Serializable {
 		ArrayList<IPlayer> getLobbyPlayers();
 		
 		void addPlayer(IPlayer inPlayer);
+		void removePlayer(IPlayer inPlayer);
 }

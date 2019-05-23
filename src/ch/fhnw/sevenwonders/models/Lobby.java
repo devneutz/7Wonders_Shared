@@ -1,6 +1,7 @@
 package ch.fhnw.sevenwonders.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import ch.fhnw.sevenwonders.interfaces.ILobby;
@@ -65,5 +66,16 @@ public class Lobby implements ILobby {
 		this.lobbyPlayers.add(inPlayer);
 	}
 	
+	public void removePlayer(IPlayer inPlayer) {
+		synchronized(this.lobbyPlayers) {
+			Iterator<IPlayer> iter = this.lobbyPlayers.iterator();
+			while(iter.hasNext()) {
+				IPlayer L = iter.next();
+				if(L.getName().equals(inPlayer.getName())) {
+					iter.remove();
+				}				
+			}
+		}
+	}
 	
 }
