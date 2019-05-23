@@ -38,5 +38,7 @@ public interface IBoard extends Serializable {
 	ArrayList<ResourceType> getBoardResource();
 	
 	int destroyCoins ();
+	
+	String getName();
 
 }
