@@ -144,6 +144,10 @@ public class Board implements IBoard {
 	public String getImageName() {
 		return imageName;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
 
 	@Override
 	public ArrayList<ResourceType> getStepOneValue() {
