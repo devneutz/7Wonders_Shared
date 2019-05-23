@@ -154,7 +154,7 @@ public class Player implements IPlayer {
 			//Falls das gebaute Weltwunder Muenzen als Value gibt
 			this.addCoins(board.destroyCoins());
 			
-			
+			//Karte entfernen
 			for (int i = 0; i < CardStack.size(); i++) {
 				if (CardStack.get(i).getImageName().equals(card.getImageName())) {
 					this.CardStack.remove(i);
@@ -198,8 +198,9 @@ public class Player implements IPlayer {
 	}
 	
 	/**
+	 * Vergleicht die Spieler anhand Ihrem Punktetotal
 	 * @author Ismael
-	 */
+	 */ 
 	public int compareTo(IPlayer player) {
 		int comp = (this.evaluate().get("TOTAL") - player.evaluate().get("TOTAL"));
 		
@@ -243,13 +244,20 @@ public class Player implements IPlayer {
 	public void addCoin() {
 		this.coinWallet.add(ResourceType.Coin);
 	}
-	
+	/**
+	 * Coins erhalten durch bspw. Ummuenzen
+	 * @author Ismael
+	 */
 	public void addCoins(int amount) {
 		for (int x = 0; x < amount; x++) {
 			this.coinWallet.add(ResourceType.Coin);
 		}
 	}
 	
+	/**
+	 * Bezahlen mit Coins bspw. beim Erwerb von Karten
+	 * @author Ismael
+	 */
 	public void payByCoins(int amount) {
 		for (int x = 0; x < amount; x++) {
 			this.coinWallet.remove(this.coinWallet.size()-1);
@@ -261,7 +269,8 @@ public class Player implements IPlayer {
 	public int getMilitaryWarPoints() {
 		return militaryWarPoints;
 	}
-
+	
+	
 	public void addMilitaryWarPoints(int addValue) {
 		this.militaryWarPoints += addValue;
 	}
@@ -284,7 +293,7 @@ public class Player implements IPlayer {
 
 	/**
 	 * @author Ismael
-	 * gibt alle Ressourcen der gespielten Karten aus
+	 * gibt alle Ressourcen der gespielten Karten aus, nicht beachtung von OR oder AND type
 	 */
 	public ArrayList<ResourceType> getCardResources() {
 		ArrayList<ResourceType> cardResource = new ArrayList<ResourceType>();
@@ -372,7 +381,7 @@ public class Player implements IPlayer {
 		int w = 0;
 	
 		for (int i = 0; i < this.getBoard().getBoardResource().size(); i++) {
-			if (this.getBoard().getStepOneValue().get(i).equals(ResourceType.VictoryPoint)) {
+			if (this.getBoard().getBoardResource().get(i).equals(ResourceType.VictoryPoint)) {
 				w++;
 			}
 		}
