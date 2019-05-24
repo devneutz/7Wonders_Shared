@@ -10,7 +10,7 @@ import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
- * @author Joel Neutzner, Ismael Liuzzi, Matteo Farneti
+ * @author Ismael Liuzzi
  *
  */
 
@@ -55,14 +55,14 @@ public class Board implements IBoard {
 	}
 	
 	/**
-	 * @author Matteo Farneti
-	 * Prüft, ob die Kosten mit den vorhanden Ressourcen gedeckt werden und somit gebaut werden kann.
+	 *
+	 * Prueft, ob die Kosten des nächsten Weltwunders mit den vorhanden Ressourcen gedeckt werden und somit gebaut werden kann.
 	 */
 	@Override
 	public Boolean canBuild(IPlayer p) {
 		
 		ArrayList<ResourceType> tmpCost = new ArrayList<ResourceType>();
-		
+		//Welches Weltwunder ist als naechstes bebaut werden kann
 		switch (this.getNextStageToBuild()) {
 		case 1: tmpCost.addAll(this.stepOneCost); break;
 		
@@ -99,12 +99,12 @@ public class Board implements IBoard {
 		
 		
 		
-		//Überpruefungsliste ob allle Ressourcen gedeckt werden konnten
+		//Überpruefungsliste ob alle Ressourcen gedeckt werden konnten
 		for(int x = 0 ; x < tmpCost.size(); x++){
 			costFound.add(false);
 		}
 		
-		//pruefen ob Resource vorhanden
+		//pruefen ob Resource vorhanden mit AND value und falls gefunden Value zerstoeren
 		for (int x = 0; x < tmpCost.size(); x++) {
 			
 			for(int y = 0; y < tempCardsAndValues.size(); y++) {
@@ -115,7 +115,7 @@ public class Board implements IBoard {
 				}
 			}
 			
-				
+			//Falls nicht mit AND gefunden, auf OR Values wietersuchen und falls gefunden ganze Karte zerstoeren
 			if (!costFound.get(x)){
 				for (int y = 0; y < tempCardsOr.size(); y++) {
 					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {
@@ -161,8 +161,9 @@ public class Board implements IBoard {
 	public ArrayList<ResourceType> getStepThreeValue() {
 		return stepThreeValue;
 	}
+	
 	/**
-	 * Gibt zurueck was der nächste Schritt für den Bau ist.
+	 * Gibt zurueck welcher der nächste Schritt beim Bauen ist
 	 */
 	public int getNextStageToBuild() {
 		if (!this.StepOneBuilt) {
@@ -228,7 +229,7 @@ public class Board implements IBoard {
 	}
 	
 	/**
-	 * @author Ismael
+	 * Zerstoert Coins aus Boardresource und gibt zurueck wie viel Coins betroffen waren
 	 */
 	public int destroyCoins() {
 		int destroyed = 0;

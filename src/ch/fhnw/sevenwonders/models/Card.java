@@ -12,7 +12,7 @@ import ch.fhnw.sevenwonders.interfaces.IPlayer;
 
 /**
  * 
- * @author Matteo Farneti, Ismael Liuzzi
+ * @author Ismael Liuzzi
  *
  */
 
@@ -76,8 +76,8 @@ public class Card implements ICard {
 	}
 
 	/**
-	 * Ueberprüft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfuegung stehenden Resourcen gedeckt werden koennen.
-	 * @author Ismael
+	 * Ueberprueft, ob die Kosten der Karte (ArrayList cost) mit den zur Verfuegung stehenden Resourcen gedeckt werden koennen.
+	 * 
 	 */
 	public boolean isPlayable(IPlayer p) {
 		
@@ -116,7 +116,7 @@ public class Card implements ICard {
 			costFound.add(false);
 		}
 		
-		//pruefen ob Resource vorhanden
+		//pruefen ob Resource vorhanden mit AND value und falls gefunden Value zerstoeren
 		for (int x = 0; x < this.cost.size(); x++) {
 			
 			for(int y = 0; y < tempCardsAndValues.size(); y++) { 
@@ -127,7 +127,7 @@ public class Card implements ICard {
 				}
 			}
 			
-				
+			//Falls nicht mit AND gefunden, auf OR Values wietersuchen und falls gefunden ganze Karte zerstoeren
 			if (!costFound.get(x)){
 				for (int y = 0; y < tempCardsOr.size(); y++) {
 					for (int z = 0; z < tempCardsOr.get(y).getValue().size(); z++) {
@@ -159,6 +159,9 @@ public class Card implements ICard {
 		return imageName;
 	}
 	
+	/**
+	 * Zerstoert Coins aus Boardresource und gibt zurueck wie viel Coins betroffen waren
+	 */
 	public int destroyCoins() {
 		int destroyed = 0;
 		for (int x = 0; x < this.value.size(); x++) {

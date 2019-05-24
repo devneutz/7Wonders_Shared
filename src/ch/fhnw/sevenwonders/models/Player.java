@@ -8,7 +8,7 @@ import ch.fhnw.sevenwonders.interfaces.*;
 
 /**
  * 
- * @author Matteo Farneti, Ismael Liuzzi
+ * @author Ismael Liuzzi
  *
  */
 
@@ -57,9 +57,9 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Matteo Farneti
+	 * 
 	 * Ummuenzen der Karte, was dem Spieler 3 Coins bringt. Es findet keine Pruefung
-	 * statt, da dies immer funktionieren muss.	 * 
+	 * statt, da dies immer funktionieren muss.	 
 	 */
 	public void monetizeCard(ICard card) {
 
@@ -77,7 +77,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 *@author Ismael
+	 *
 	 * Wenn die gewuenschte Karte gespielt wird, muss sie auch aus dem Kartendeck
 	 * entfernt werden.
 	 */
@@ -114,7 +114,7 @@ public class Player implements IPlayer {
 		}
 	}
 	/**
-	 * @author Ismael
+	 * 
 	 * Karte wird für den naechstmoeglichen Weltwunderstufen-Bau verwendet.
 	 */
 	public void useCardForBuilding(ICard card) {
@@ -199,7 +199,7 @@ public class Player implements IPlayer {
 	
 	/**
 	 * Vergleicht die Spieler anhand Ihrem Punktetotal
-	 * @author Ismael
+	 *
 	 */ 
 	public int compareTo(IPlayer player) {
 		int comp = (this.evaluate().get("TOTAL") - player.evaluate().get("TOTAL"));
@@ -241,12 +241,16 @@ public class Player implements IPlayer {
 		this.coinWallet = coinWallet;
 	}
 	
+	/**
+	 * Coinwallet um eins erhoehren
+	 */
 	public void addCoin() {
 		this.coinWallet.add(ResourceType.Coin);
 	}
+	
 	/**
 	 * Coins erhalten durch bspw. Ummuenzen
-	 * @author Ismael
+	 * 
 	 */
 	public void addCoins(int amount) {
 		for (int x = 0; x < amount; x++) {
@@ -255,8 +259,8 @@ public class Player implements IPlayer {
 	}
 	
 	/**
-	 * Bezahlen mit Coins bspw. beim Erwerb von Karten
-	 * @author Ismael
+	 * Bezahlen mit Coins bspw. beim Bauen von Karten
+	 * 
 	 */
 	public void payByCoins(int amount) {
 		for (int x = 0; x < amount; x++) {
@@ -292,7 +296,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * gibt alle Ressourcen der gespielten Karten aus, nicht beachtung von OR oder AND type
 	 */
 	public ArrayList<ResourceType> getCardResources() {
@@ -306,7 +310,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * alle Ressourcen aus, die der Spieler zur Verfuegung hat (ohne Beachtung OR and AND Karten)
 	 */
 	public ArrayList<ResourceType> getPlayerResources() {
@@ -323,7 +327,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * fuehrt den Militaerkampf fuer den aufgerufenen Spieler aus. Setzt seine MilitaryWarPoints dementsprechend
 	 */
 	public void militaryConflict(IPlayer neighbourLeft, IPlayer neighbourRight, Age age) {
@@ -358,7 +362,7 @@ public class Player implements IPlayer {
 		}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * Gibt die Gewinnpunkte aufgrund der Coins an
 	 */
 	@Override
@@ -373,7 +377,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * Gibt die Gewinnpunkte aufgrund der Weltwunderbauten an
 	 */
 	@Override
@@ -389,7 +393,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 * 
 	 * Gibt die Gewinnpunkte aufgrund gespielter Profankarten an
 	 */
 	@Override
@@ -405,7 +409,7 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
+	 *
 	 * Gibt die Gewinnpunkte aufgrund der Forschungsgebäude an
 	 */
 	@Override
@@ -413,7 +417,7 @@ public class Player implements IPlayer {
 	public int evaluateVictoryResearch() {
 		int r = 0, tafel = 0, zirkel = 0, zahnrad = 0;
 	
-		// Zaehlen der verschiedenen Forschungssymbole
+		// Zaehlen der verschiedenen Forschungssymbole (Zusammenzug der Karten)
 		for (int x = 0; x < this.getPlayerResources().size(); x++) {
 			switch (this.getPlayerResources().get(x)) {
 	
@@ -434,7 +438,7 @@ public class Player implements IPlayer {
 			}
 		}
 	
-		// Punkte berechnung fuer gleiche Symbole
+		// Punkteberechnung fuer gleiche Symbole
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		temp.add(0, tafel);
 		temp.add(1, zirkel);
@@ -465,7 +469,7 @@ public class Player implements IPlayer {
 	
 		}
 	
-		// Punkteberechnung für Paket an 3 verschiedenen Symbolen
+		// Punkteberechnung fuer Paket an 3 verschiedenen Symbolen
 		while (tafel != 0 && zirkel != 0 && zahnrad != 0) {
 			r = r + 7;
 			tafel--;
@@ -476,8 +480,8 @@ public class Player implements IPlayer {
 	}
 
 	/**
-	 * @author Ismael
-	 * Gibt alle Siegpunkte eines Spielers zurueck
+	 * 
+	 * Gibt alle Siegpunkte eines Spielers zurueck als HashMAP
 	 */
 	public HashMap<String, Integer> evaluate() {
 	
