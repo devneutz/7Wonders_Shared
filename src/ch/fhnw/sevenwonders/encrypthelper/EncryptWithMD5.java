@@ -7,8 +7,7 @@ import java.util.logging.Logger;
 
 /**
  * 
- * @author Gabriel de Castilho -> Source from
- *         https://stackoverflow.com/questions/10696432/encryption-of-password-in-java-or-mysql
+ * Source from https://stackoverflow.com/questions/10696432/encryption-of-password-in-java-or-mysql
  * 
  *         Diese Klasse stellt die Hashfunktion MD5 zur Verfügung, welche für
  *         die Passwortverschlüsselung verwendet wird.
